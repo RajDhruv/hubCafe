@@ -1,0 +1,15 @@
+<%case from%>
+<%when 'global_cafes'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/global_cafes.html.erb' )%>")
+<%when 'my_cafes'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/my_cafes.html.erb' )%>")
+<%when 'membership_cafes'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/membership_cafes.html.erb' )%>")
+<%when 'tasks'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/tasks.html.erb' )%>")
+<%when 'new'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/new.html.erb' )%>")
+<%when 'create'%>
+$("#list_tasks").click();
+$("#message_pop_up").html("<%= escape_javascript(render :partial=>'shared/noty_message_popup.html.erb' )%>");
+<%end%>

@@ -1,0 +1,32 @@
+<center>
+<div class="form_container" style="padding:60px 25px 60px 25px;background-color: goldenrod;width: 50%;border-radius: 7px;">
+<%current_user_email=session[:current_user]["email"]%>
+<form id="login_user">
+<table>
+<tr>
+	<td><label>Email: </label></td>
+	<td><label><%=current_user_email%></label></td>
+	<input type="hidden" id="re_login_email" name="email" value="<%=current_user_email%>">
+</tr>
+<tr>
+	<td><label>Password: </label></td>
+	<td><label><input type="password" name="password"></label></td>
+</tr>
+
+</table>
+	<input type="button" value="Login" onclick="login_user();">
+	<input type="button" value="Cancel" onclick="$('#form_content').html('');$('.welcome_navs').removeClass('active');">
+</form>
+</div>
+</center>
+<script type="text/javascript">
+	function login_user()
+	{
+		dataForm=$('#login_user').serialize();
+		$.ajax({
+			type:'post',
+			url:"users/validate_login",
+			data:dataForm
+		})
+	}
+</script>

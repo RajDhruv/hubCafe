@@ -1,0 +1,87 @@
+<style type="text/css">
+	.left_hand_menus{
+		cursor: pointer;
+	}
+</style>
+<%current_user_hash=session[:current_user]%>
+<%current_user=User.find_by_id(current_user_hash["id"])%>
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+					<div class="profile-sidebar">
+						<!-- SIDEBAR USERPIC -->
+						<div class="profile-userpic">
+						<%profile_pic=current_user.profile_img.url%>
+						<%if profile_pic.nil?%>
+							<%if current_user.sex=='Male'%>
+								<%profile_pic=asset_path('profile_pic/male.png')%>
+							<%elsif current_user.sex=='Female'%>
+								<%profile_pic=asset_path('profile_pic/female.png')%>
+							<%end%>
+						<%end%>
+							<img src="<%=profile_pic%>" class="img-responsive" alt="">
+						</div>
+						<!-- END SIDEBAR USERPIC -->
+						<!-- SIDEBAR USER TITLE -->
+						<div class="profile-usertitle">
+							<div class="profile-usertitle-name">
+								<%=current_user_hash["name"]%>
+							</div>
+							<div class="profile-usertitle-job">
+								<%=current_user_hash["profile_def"]%>
+							</div>
+						</div>
+						<!-- END SIDEBAR USER TITLE -->
+						<!-- SIDEBAR BUTTONS -->
+						<div class="profile-userbuttons">
+							<button type="button" class="btn btn-success btn-sm">Follow</button>
+							<button type="button" class="btn btn-danger btn-sm">Message</button>
+						</div>
+						<!-- END SIDEBAR BUTTONS -->
+						<!-- SIDEBAR MENU -->
+						<div class="profile-usermenu">
+							<ul class="nav">
+								<li class="left_hand_menus" id="list_global_cafes" onclick="get_left_hand_navs('global_cafes')">
+									<a>
+									<i class="glyphicon glyphicon-global"></i>
+									Global Cafes </a>
+								</li>
+								<li class="left_hand_menus" id="list_membership_cafes" onclick="get_left_hand_navs('membership_cafes')">
+									<a>
+									<i class="glyphicon glyphicon-membership"></i>
+									Membership Cafes </a>
+								</li>
+								<li class="left_hand_menus" id="list_my_cafes" onclick="get_left_hand_navs('my_cafes')">
+									<a>
+									<i class="glyphicon glyphicon-mine"></i>
+									My Cafes </a>
+								</li>
+								<li class="left_hand_menus" id="list_tasks" onclick="get_left_hand_navs('tasks')">
+									<a>
+									<i class="glyphicon glyphicon-task"></i>
+									Tasks </a>
+								</li>
+								<li class="left_hand_menus">
+									<a>
+									<i class="glyphicon glyphicon-flag"></i>
+									Help </a>
+								</li>
+							</ul>
+						</div>
+						<!-- END MENU -->
+					</div>
+				</div>
+			</div>
+		</div>
+<script type="text/javascript">
+	function get_left_hand_navs(link_clicked)
+	{
+		$('.left_hand_menus').removeClass('active');
+		$('#list_'+link_clicked).addClass('active');
+		custom_loader('action_zone','pie_loader_cyan','LOADING '+link_clicked.replace(/_/g,' ').toUpperCase())
+		$.ajax({
+			type: 'post',
+			url: 'cafes/'+link_clicked
+		})
+	}
+</script>

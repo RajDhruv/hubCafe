@@ -1,0 +1,34 @@
+<h1>Cafes#new</h1>
+<p>Find me in app/views/cafes/new.html.erb</p>
+
+<center>
+<div class="form_container" style="padding:60px 25px 60px 25px;background-color: aliceblue;width: 50%;border-radius: 7px;">
+<form id="new_cafe_create">
+<table>
+<tr>
+	<td><label>Cafe Name: </label></td>
+	<td><label><input type="text" name="name"></label></td>
+</tr>
+<tr>
+	<td><label>Define Your Cafe: </label></td>
+	<td><label><textarea name="description"></textarea></label></td>
+</tr>
+
+
+</table>
+	<input type="button" value="Submit" onclick="new_cafe();">
+	<input type="button" value="Cancel" onclick="$('#list_tasks').click();">
+</form>
+</div>
+</center>
+<script type="text/javascript">
+	function new_cafe()
+	{
+		dataForm=$('#new_cafe_create').serialize();
+		$.ajax({
+			type:'post',
+			url:"cafes/create",
+			data:dataForm
+		})
+	}
+</script>

@@ -1,0 +1,42 @@
+<h1>Manage Invitations</h1>
+<p>Manage Viewers Invites To Become Your Cafe's Members. </p>
+
+<br>
+<center>
+<div>
+<table style="width: 90%;" cellpadding="5" cellspacing="5" border="1" bordercolor="cyan">
+	<tr>
+		<td align="center" style="background-color: aliceblue;width:35%"><b>Cafe Name</b></td>
+		<td align="center" style="background-color: aliceblue;width:35%"><b>Requested By</b></td>
+		<td align="center" style="background-color: aliceblue;width:30%"><b>Action</b></td>
+	</tr>
+
+
+<%@invitations.each_with_index do |invitation,ind|%>
+<%cafe=Cafe.find_by_id(invitation.cafe_id)%>
+<%requestor=User.find_by_id(invitation.requestor_id)%>
+<%if ind%2==0
+	row_color="light-grey;"
+else
+	row_color="white"
+end%>
+
+
+<tr style="background-color: <%=row_color%>;">
+	<td align="center"><%=cafe.name%></td>
+	<td align="center"><%=requestor.name%></td>
+	<td align="center"><span id="invitation_action_<%=invitation.id%>"><button style="color: yellow;background-color: green;border-radius: 7px;" onclick="accept_reject_invitation('accept','<%=invitation.id%>');">Welcome</button>&nbsp;&nbsp;<button style="background-color: red;color: aliceblue;border-radius: 7px;" onclick="accept_reject_invitation('reject','<%=invitation.id%>');">Ignore</button></span></td>
+</tr>
+<%end%>
+</table>
+</div>
+</center>
+<script type="text/javascript">
+	function accept_reject_invitation(from,id)
+	{
+		$.ajax({
+			type: 'post',
+			url: 'invitations/take_action?action_type='+from+'&for_id='+id
+		})
+	}
+</script>

@@ -1,0 +1,62 @@
+<center>
+<div class="form_container" style="padding:60px 25px 60px 25px;background-color: aliceblue;width: 50%;border-radius: 7px;">
+<!-- <form id="new_user_registration"> -->
+<%= form_for @user,url: creation_users_path, html: { multipart: true ,method: 'post',:id=>"new_user_registration"}, remote: true, authenticity_token: true do |f| %>
+<table>
+<tr>
+	<td><label>Name: </label></td>
+	<td><label><input type="text" name="name"></label></td>
+</tr>
+<tr>
+	<td><label>Age: </label></td>
+	<td><label><input type="number" name="age"></label></td>
+</tr>
+<tr>
+	<td><label>Email: </label></td>
+	<td><label><input type="text" name="email"></label></td>
+</tr>
+<tr>
+	<td><label>Password: </label></td>
+	<td><label><input type="password" name="password"></label></td>
+</tr>
+<tr>
+	<td><label>Confirm Password: </label></td>
+	<td><label><input type="password" name="confirm_password"></label></td>
+</tr>
+<tr>
+<td><label>Sex: </label></td>
+	<td><label><input type="radio" name="sex" value="Male">Male &nbsp; <input type="radio" name="sex" value="Female">Female &nbsp; <input type="radio" name="sex" value="Other">Other</label></td>
+</tr>
+<tr>
+	<td><label>Date of Birth: </label></td>
+	<td><label><input type="date" name="date_of_birth"></label></td>
+</tr>
+<tr>
+	<td><label>Define Yourself: </label></td>
+	<td><label><textarea name="profile_def"></textarea></label></td>
+</tr>
+<tr>
+	<td><label>Upload Profile Pic: </label></td>
+	<td><label><input type="file" name="profile_img"></input></label></td>
+</tr>
+
+</table>
+	<!-- <input type="button" value="Submit" onclick="new_user();"> -->
+	<%= f.submit "Save" %>
+	<input type="button" value="Cancel" onclick="$('#form_content').html('');$('.welcome_navs').removeClass('active');">
+<% end %>
+<!-- </form> -->
+</div>
+</center>
+
+<script type="text/javascript">
+	function new_user()
+	{
+		dataForm=$('#new_user_registration').serialize();
+		$.ajax({
+			type:'post',
+			url:"users/create",
+			data:dataForm
+		})
+	}
+</script>

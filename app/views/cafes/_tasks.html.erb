@@ -1,0 +1,27 @@
+<h1>Your Tasks</h1>
+<p>Find me in app/views/cafes/update.html.erb</p>
+<%replacement_text='<span style="color:red;">Ignored</span>'%>
+
+<ul>
+	<li class="left_hand_menus" id="task_list_new" onclick="load_task('cafes','new')">
+		<a>
+		<i class="glyphicon glyphicon-task"></i>
+		Create Community</a>
+	</li>
+	<li class="left_hand_menus" id="task_list_new" onclick="load_task('invitations','view_requests')">
+		<a>
+		<i class="glyphicon glyphicon-task"></i>
+		View Invitation Requests</a>
+	</li>
+</ul>
+
+<script type="text/javascript">
+	function load_task(cont,link_clicked)
+	{
+		custom_loader('action_zone','snake_game','LOADING')
+		$.ajax({
+			type: 'post',
+			url: cont+'/'+link_clicked
+		})
+	}
+</script>
