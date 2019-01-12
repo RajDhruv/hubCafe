@@ -1,13 +1,14 @@
 <%if !@posts.nil? and !@posts.empty?%>
 <%@posts.each do |post|%>
-<div id="post_<%=post.class.name%>_<%=post.id%>">
+<div id="post_<%=post.class.name%>_<%=post.id%>" style="padding: 5px 10px 5px 10px;">
 	<div id="post_title">
 		<label style="color:blue"><i><b><%=post.title%></b></i></label>
 	</div>
-	<div id="post_description">
-		<label><%=post.description.html_safe%></label>
+	<div id="post_description" style="width:100%;overflow: scroll">
+		<label><%=post.description.html_safe%>
+		</label>
 	</div>
 </div>
-
+<hr>
 <%end%>
 <%end%>
