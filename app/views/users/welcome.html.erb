@@ -110,7 +110,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">HubCafe</a>
+      <a class="navbar-brand" href="#"><img src='<%=asset_path("coffee_mug.png")%>' height="25" style="float:left;"><span style="padding: 0 0 0 10px">hubCafe</span></a>
     </div>
     <ul class="nav navbar-nav" id="navbar_links_listing" style="float:right;">
       <li id="nav_register" class="welcome_navs" style="cursor: pointer" onclick='getPage("register")'><a>Register</a></li>
@@ -120,7 +120,9 @@
 </nav>
 
 <div id="form_content"></div>
+<%#= cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' }%>
 </body>
+
 <script type="text/javascript">
 	function getPage(page)
 	{	

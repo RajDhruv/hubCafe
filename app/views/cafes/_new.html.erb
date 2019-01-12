@@ -3,7 +3,8 @@
 
 <center>
 <div class="form_container" style="padding:60px 25px 60px 25px;background-color: aliceblue;width: 50%;border-radius: 7px;">
-<form id="new_cafe_create">
+<!-- <form id="new_cafe_create"> -->
+<%= form_for @cafe,:url=>{:controller=>"cafes", :action=>"create"}, html: { multipart: true ,method: 'post',:id=>"new_user_registration"}, remote: true, authenticity_token: true do |f| %>
 <table>
 <tr>
 	<td><label>Cafe Name: </label></td>
@@ -13,12 +14,18 @@
 	<td><label>Define Your Cafe: </label></td>
 	<td><label><textarea name="description"></textarea></label></td>
 </tr>
+<tr>
+	<td><label>Upload Cafe Logo: </label></td>
+	<td><label><input type="file" name="cafe_logo"></input></label></td>
+</tr>
 
 
 </table>
-	<input type="button" value="Submit" onclick="new_cafe();">
+	<!-- <input type="button" value="Submit" onclick="new_cafe();"> -->
+	<%= f.submit "Create" %>
 	<input type="button" value="Cancel" onclick="$('#list_tasks').click();">
-</form>
+<!-- </form> -->
+<%end%>
 </div>
 </center>
 <script type="text/javascript">

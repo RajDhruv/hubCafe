@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+  mount Ckeditor::Engine => '/ckeditor'
 	root 'users#welcome'
 	resources :users do
 		collection do
@@ -14,6 +16,16 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :blogs do
+		collection do
+			  get 'new'
+			  get 'edit'
+			  get 'show'
+			  post 'create'
+			  post 'update'
+		end
+	end
+
 	resources :cafes do
 		collection do
 			  post 'new'
@@ -25,6 +37,8 @@ Rails.application.routes.draw do
 			  post 'my_cafes'
 			  post 'membership_cafes'
 			  post 'tasks'
+			  get 'show'
+			  post 'show'
 		end
 	end
 

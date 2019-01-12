@@ -1,65 +1,69 @@
-function custom_loader(div_id,loader_type,content)
+function custom_loader(div_id,loader_type,content,text_color)
 {
 	loader_label='';
 	if(content==undefined)
 	{
 		content="Loading";
 	}
+	if(text_color==undefined)
+	{
+		text_color="";
+	}
 	if(loader_type=='stream')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'>"+content+"&nbsp;<img src='<%=asset_path('custom_loader/stream_loader.gif')%>' alt='...' width='50'/></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'>"+content+"&nbsp;<img src='<%=asset_path('custom_loader/stream_loader.gif')%>' alt='...' width='50'/></center>";
 	}
 	else if(loader_type=='circle')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/circle_loader.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/circle_loader.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='blob')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/blob.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/blob.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='blue_diameter')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/blue_diameter.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/blue_diameter.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='bouncing_balls')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/bouncing_balls.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/bouncing_balls.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='dna')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/dna.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/dna.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='gears1')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/gears1.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/gears1.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='gears2')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/gears2.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/gears2.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='pie_loader_cyan')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/pie_loader_cyan.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/pie_loader_cyan.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='snake_game')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/snake_game.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/snake_game.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='sand_clock_up')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/sand_clock.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/sand_clock.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='sliding_discs_up')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><div><img src='<%=asset_path('custom_loader/sliding_discs.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><div><img src='<%=asset_path('custom_loader/sliding_discs.gif')%>' alt='...' width='50'/></div><div>"+content+"</div></center>";
 	}
 	else if(loader_type=='sand_clock')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><table><tr><td align='center'><img src='<%=asset_path('custom_loader/sand_clock.gif')%>' alt='...' width='50'/></td><td align='center'>"+content+"</td></tr></table></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><table><tr><td align='center'><img src='<%=asset_path('custom_loader/sand_clock.gif')%>' alt='...' width='50'/></td><td align='center'>"+content+"</td></tr></table></center>";
 	}
 	else if(loader_type=='sliding_discs')
 	{
-		loader_label=loader_label+"<center style='margin-top:20px;'><table><tr><td align='center'><img src='<%=asset_path('custom_loader/sliding_discs.gif')%>' alt='...' width='50'/></td><td align='center'>"+content+"</td><td align='center'><img src='<%=asset_path('custom_loader/sliding_discs.gif')%>' alt='...' width='50'/></td></tr></table></center>";
+		loader_label=loader_label+"<center style='margin-top:20px;color:"+text_color+"'><table><tr><td align='center'><img src='<%=asset_path('custom_loader/sliding_discs.gif')%>' alt='...' width='50'/></td><td align='center'>"+content+"</td><td align='center'><img src='<%=asset_path('custom_loader/sliding_discs.gif')%>' alt='...' width='50'/></td></tr></table></center>";
 	}
 	$('#'+div_id).html(loader_label);
 }

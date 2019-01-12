@@ -38,10 +38,17 @@
 			<%@my_cafe.each do |cafe|%>
 	            <div class="col-lg-4 col-md-6 mb-4">
 	              <div class="card h-100">
-	                <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                <%cafe_logo=cafe.cafe_logo.url%>
+                <%if !cafe_logo.nil?%>
+                <%logo_img=cafe_logo%>
+                <%else%>
+                <%logo_img=asset_path("default_logos/my_cafe.jpg")%>
+                <%end%>
+	                <a href="#"><img class="card-img-top" src="<%=logo_img%>" alt=""></a>
 	                <div class="card-body">
 	                  <h4 class="card-title">
-	                    <a href="#"><%=cafe.name%></a>
+                    <%= link_to(cafe.name,{:controller=>"cafes",:action=>"show",:cafe_id=>cafe.id},:id=>"cafe_name_link_#{cafe.id}",:onclick=>"custom_loader('action_zone','sliding_discs_up','Entering Cafe \"#{cafe.name}\"')",:method=>"post",:remote=>true)%>
+	                    <!-- <a href="#"><%=cafe.name%></a> -->
 	                  </h4>
 	                  <!-- <h5>$24.99</h5> -->
 	                  <p class="card-text"><%=cafe.description%></p>

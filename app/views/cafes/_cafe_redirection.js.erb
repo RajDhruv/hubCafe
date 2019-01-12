@@ -9,6 +9,8 @@ $("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/membership
 $("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/tasks.html.erb' )%>")
 <%when 'new'%>
 $("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/new.html.erb' )%>")
+<%when 'show'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/cafe_timeline.html.erb' )%>")
 <%when 'create'%>
 $("#list_tasks").click();
 $("#message_pop_up").html("<%= escape_javascript(render :partial=>'shared/noty_message_popup.html.erb' )%>");

@@ -1,5 +1,6 @@
 class CafesController < ApplicationController
   def new
+    @cafe=Cafe.new
     render :partial=>"cafes/cafe_redirection.js.erb",:locals=>{:from=>"new"}
   end
 
@@ -8,6 +9,7 @@ class CafesController < ApplicationController
     @cafe.name=params[:name]
     @cafe.description=params[:description]
     @cafe.admin_id=session[:current_user]["id"]
+    @cafe.cafe_logo=params[:cafe_logo]
     @cafe.created_at=Time.now
     @cafe.updated_at=Time.now
     if @cafe.save
@@ -18,6 +20,18 @@ class CafesController < ApplicationController
       @success=false
     end
     render :partial=>"cafes/cafe_redirection.js.erb",:locals=>{:from=>"create"}
+  end
+
+  def show
+    cafe_id=params[:cafe_id]
+    params[:page]||=1
+    @cafe=Cafe.find_by_id(cafe_id)
+    set_current_cafe(@cafe)
+    populate_timeline #get all timeline posts array
+    respond_to do |format|
+      format.js{render :partial=>"cafes/cafe_redirection.js.erb",:locals=>{:from=>"show"}}
+      format.html{render :partial=>"cafes/cafe_timeline.html.erb"}
+    end
   end
 
   def edit

@@ -1,4 +1,6 @@
 class Cafe < ApplicationRecord
+
+	mount_uploader :cafe_logo, FilesHandlerUploader
 	self.table_name = "cafes"
 	after_create :update_cafe_slug
 
