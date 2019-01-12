@@ -1,0 +1,63 @@
+<div id="createPostModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" style="background: #382222 none repeat scroll 0% 0%; border-radius: 7px; display: block; padding-left: 17px;max-width: 750px;height: auto;max-height:550px;left: 22%;top: 13%;">
+		<div style=""><button type="button" class="close" id="close_post_modal" data-dismiss="modal" aria-label="Close" title="Close" style="margin-right: 10px;margin-top: 5px;background-color: grey;padding: 5px 5px 5px 5px;border-radius: 50%;"> <span aria-hidden="true">×</span></button></div>
+		<div id="create_post_modal_body" style="padding:30px 30px 30px 30px;">
+		<center>
+		<div id="post_form_options">
+			<div class="col-lg-4 col-md-6 mb-4" onclick="get_create_form('blogs');">
+	              <div class="card h-100" style="background: transparent;">
+	                <a><img class="card-img-top" src="<%=asset_path('posts_icon/blogs.png')%>" alt=""></a>
+	                <div class="card-body">
+	                  <h4 class="card-title" style="color: white">
+                    Create Blog
+	                  </h4>
+	                  
+	                </div>
+	              </div>
+	        </div>
+	    </div>
+	    </center>
+	    <div id="create_form_area"></div>
+	    
+		</div>
+</div>
+<div>
+<div style="width:80%;float:left;">
+	<%cafe_logo=@cafe.cafe_logo.url%>
+	<%if !cafe_logo.nil?%>
+	<%logo_img=cafe_logo%>
+	<%else%>
+	<%logo_img=asset_path("default_logos/my_cafe.jpg")%>
+	<%end%>
+	<span style="width:20%"><img class="" src="<%=logo_img%>" alt="" width="150" style="padding: 5px 5px 5px 5px;border-radius: 20%;">
+	</span>
+	<span style="width: 80%;float: right;margin-top: 7px;">
+	<label style="color:darkblue;font-size: xx-large;"><%=@cafe.name%></label>
+	<br>
+	<label style="color:grey;"><i><%=@cafe.description%></i></label>
+	</span>
+</div>
+<br>
+<div style="width:20%;float:right;">
+	<span style="background-color: green; padding: 5px 15px 5px 15px; border-radius: 5px;float:right;margin-right: 30px;cursor: pointer;" data-toggle="modal" data-target="#createPostModal" href="#"  aria-expanded="false" id="new_post" style="cursor:pointer;" onclick="$('#post_form_options').show();$('#create_form_area').html('');">New Post</span>
+</div>
+</div>
+<br>
+
+<div id="timeline_content" style="width:75%;float:left;overflow: scroll;">
+	<%=render :partial=>"setup_timeline.html.erb"%>
+</div>
+<div id="cafe_interaction_div" style="width:25%;float:right;"></div>
+<script type="text/javascript">
+	function get_create_form(controller)
+	{
+		$('#post_form_options').hide(); 
+		custom_loader('create_form_area','dna','Getting '+controller,'white');
+		$.ajax({
+			type:"get",
+			url: controller+"/new"
+		});
+	}
+</script>
+<script type="text/javascript">
+	$('#timeline_content').css('height',($(window).height()-176))
+</script>

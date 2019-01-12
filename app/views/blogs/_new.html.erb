@@ -1,0 +1,17 @@
+<h2 style="color:white">Create Blog</h2>
+<br>
+<%= form_for @blog,:url=>{:controller=>"blogs",:action=>"create"}, html: { multipart: true ,method: 'post',:id=>"new_blog"}, remote: true, authenticity_token: true do |f| %>
+<div>
+	<label style="color:white">Title: </label><br>
+	<label><input type="text" name="title"></label>
+</div>
+<br><br>
+<div>
+	<label style="color:white">Description: </label>
+	<label><%= f.cktext_area :description, value: '', id: 'blog_description'%></label>
+</div>
+<br>
+	<!-- <input type="button" value="Submit" onclick="new_user();"> -->
+	<%= f.submit "Save" %>
+	<input type="button" value="Cancel" onclick="$('#post_form_options').show();$('#create_form_area').html('');">
+<% end %>

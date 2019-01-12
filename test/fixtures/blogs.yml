@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  lock_version: 1
+  created_by: 1
+  updated_by: 1
+
+two:
+  title: MyString
+  description: MyText
+  lock_version: 1
+  created_by: 1
+  updated_by: 1

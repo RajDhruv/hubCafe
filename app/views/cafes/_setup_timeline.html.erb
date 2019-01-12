@@ -1,0 +1,13 @@
+<%if !@posts.nil? and !@posts.empty?%>
+<%@posts.each do |post|%>
+<div id="post_<%=post.class.name%>_<%=post.id%>">
+	<div id="post_title">
+		<label style="color:blue"><i><b><%=post.title%></b></i></label>
+	</div>
+	<div id="post_description">
+		<label><%=post.description.html_safe%></label>
+	</div>
+</div>
+
+<%end%>
+<%end%>
