@@ -1,3 +1,26 @@
+<style type="text/css">
+	#timeline_content::-webkit-scrollbar {
+    width: 20px;
+    background-color:black;
+    border-radius:10px;
+}
+/* Track */
+#timeline_content::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+#timeline_content::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
+}
+/* Handle on hover */
+#timeline_content::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+}
+
+</style>
 <div id="createPostModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" style="background: #382222 none repeat scroll 0% 0%; border-radius: 7px; display: block; padding-left: 17px;max-width: 750px;height: auto;max-height:550px;left: 22%;top: 13%;z-index: -1">
 		<div style=""><button type="button" class="close" id="close_post_modal" data-dismiss="modal" aria-label="Close" title="Close" style="margin-right: 10px;margin-top: 5px;background-color: grey;padding: 5px 5px 5px 5px;border-radius: 50%;" onclick="$('#createPostModal').css('z-index','-1')"> <span aria-hidden="true">×</span></button></div>
 		<div id="create_post_modal_body" style="padding:30px 30px 30px 30px;">
@@ -20,6 +43,8 @@
 	    
 		</div>
 </div>
+<div style="height:100%;background-image: url('<%=asset_path('homepage_background2.jpg')%>');background-repeat: no-repeat;
+  background-size: 100% 100%;">
 <div>
 <div style="width:80%;float:left;">
 	<%cafe_logo=@cafe.cafe_logo.url%>
@@ -47,6 +72,7 @@
 	<%=render :partial=>"setup_timeline.html.erb"%>
 </div>
 <div id="cafe_interaction_div" style="width:25%;float:right;"></div>
+</div>
 <script type="text/javascript">
 	function get_create_form(controller)
 	{
