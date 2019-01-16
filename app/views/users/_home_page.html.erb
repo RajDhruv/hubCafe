@@ -4,8 +4,9 @@
 	<%=render :partial=>"users/left_hand_menu.html.erb"%>
 </div>
 <div id="action_zone" class="home_page_subsection" style="float:right;width:77%;background-color: white;">
-	<center>
-		<img src='<%=asset_path("coffee_mug.png")%>'>
+	<center style="margin-top: 5%;">
+		<img src='<%=asset_path("coffee_mug.png")%>' style="width: 35%;">
+		<br><br>
 		<label>Welcome To HubCafe <span style="color:brown"><%=session[:current_user]["name"]%></span></label>
 
 	</center>
