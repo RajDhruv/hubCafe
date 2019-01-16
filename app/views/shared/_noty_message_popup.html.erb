@@ -5,7 +5,7 @@ font_color="black"%>
 <%bg_color="red"
 font_color="white"%>
 <%end%>
-<div id="myModal_message" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" style="top: 10%;height: 200px;width: 400px;background: <%=bg_color%>;left: 35%;border-radius: 7px;">
+<div id="myModal_message" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" style="top: 10%;height: 100px;width: 400px;background: <%=bg_color%>;left: 35%;border-radius: 7px;">
 		<div style="display:none;"><button type="button" class="close" id="close_message_modal" data-dismiss="modal" aria-label="Close" title="Close"> <span aria-hidden="true">×</span></button></div>
 		<center><div id="message_modal_content" style="padding:30px 15px 30px 15px;font-weight: bold;<%=font_color%>"></div></center>
 	</div>
@@ -16,6 +16,6 @@ font_color="white"%>
 	$("#open_message_modal").click();
 	setTimeout(function() {
 		$("#close_message_modal").click();	
-	}, 6000);
+	}, 4000);
 </script>
 <%end%>
