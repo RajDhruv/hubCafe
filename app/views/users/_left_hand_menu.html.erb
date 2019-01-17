@@ -10,15 +10,16 @@
 		<div class="col-md-3">
 					<div class="profile-sidebar">
 						<!-- SIDEBAR USERPIC -->
-						<div class="profile-userpic">
-						<%profile_pic=current_user.profile_img.url%>
+						<%profile_pic=current_user.profile_img.url
+						profile_pic_gender=""%>
 						<%if profile_pic.nil?%>
 							<%if current_user.sex=='Male'%>
-								<%profile_pic=asset_path('profile_pic/male.png')%>
+								<%profile_pic_gender=asset_path('profile_pic/male.png')%>
 							<%elsif current_user.sex=='Female'%>
-								<%profile_pic=asset_path('profile_pic/female.png')%>
+								<%profile_pic_gender=asset_path('profile_pic/female.png')%>
 							<%end%>
 						<%end%>
+						<div class="profile-userpic" style="background-image: url('<%=profile_pic_gender%>');background-repeat: no-repeat;">
 							<img src="<%=profile_pic%>" class="img-responsive" alt="">
 						</div>
 						<!-- END SIDEBAR USERPIC -->
