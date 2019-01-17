@@ -1,5 +1,7 @@
-<h1>My Cafes</h1>
-<p>Have a look at all the Cafes Created by you....Cafes you are the Admin Of!!!</p>
+<div style="padding: 0 0 0 15px;background-color: beige;">
+<h1 style="color: silver;text-shadow: 2px 2px chocolate;">My Cafes</h1>
+<p style="color: cadetblue;">Have a look at all the Cafes Created by you....Cafes you are the Admin Of!!!</p>
+</div>
 
 
 <center>
@@ -34,7 +36,7 @@
           </div> -->
 
           <div class="row">
-
+    <%if !@my_cafe.nil? and !@my_cafe.empty?%>
 			<%@my_cafe.each do |cafe|%>
 	            <div class="col-lg-4 col-md-6 mb-4">
 	              <div class="card h-100">
@@ -59,6 +61,11 @@
 	              </div>
 	            </div>
 			<%end%>
+    <%else%>
+    <center>
+      <img class="card-img-top" src="<%=asset_path('no_data.jpg')%>" alt="">
+    </center>
+    <%end%>
             
           </div>
           <!-- /.row -->
