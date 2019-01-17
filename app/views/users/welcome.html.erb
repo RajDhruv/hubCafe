@@ -120,6 +120,7 @@
 </nav>
 
 <div id="form_content"></div>
+<div id="default_welcome_page_content"><center> <img src='<%=asset_path("welcome_home.png")%>'></center></div>
 <%#= cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' }%>
 </body>
 
@@ -127,6 +128,7 @@
 	function getPage(page)
 	{	
 		$('.welcome_navs').removeClass('active');
+    $('#default_welcome_page_content').hide();
 		$('#nav_'+page).addClass('active');
 		custom_loader('form_content','blob','Loading')
 		$.ajax({
