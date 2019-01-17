@@ -17,8 +17,14 @@
 							<%elsif current_user.sex=='Female'%>
 								<%profile_pic_gender=asset_path('profile_pic/female.png')%>
 							<%end%>
+							<style type="text/css">
+								#user_profile_pic
+								{
+								background-image:url('<%=profile_pic_gender%>');
+								}
+							</style>
 						<div class="profile-userpic">
-							<img src="<%=profile_pic%>" class="img-responsive" alt="<%=current_user_hash["name"]%>" onerror=this.src="<%=profile_pic_gender%>">
+							<img src="<%=profile_pic%>" id="user_profile_pic" class="img-responsive" alt="<%=current_user_hash["name"]%>" onerror=this.src="<%=profile_pic_gender%>">
 						</div>
 						<!-- END SIDEBAR USERPIC -->
 						<!-- SIDEBAR USER TITLE -->
