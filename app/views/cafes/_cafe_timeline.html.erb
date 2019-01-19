@@ -53,7 +53,16 @@
 	<%else%>
 	<%logo_img=asset_path("coffee_mug.png")%>
 	<%end%>
-	<span style="width:20%"><img class="" src="<%=logo_img%>" alt="" width="150" height="100" style="padding: 5px 5px 5px 5px;border-radius: 20%;">
+	<style type="text/css">
+		#cafe_logo
+		{
+		background-image:url('<%=asset_path("default_logos/cafe_logo_fallback.jpg")%>');
+		background-size: 100%;
+		background-repeat: no-repeat;
+		display:inline-block;
+		}
+	</style>
+	<span style="width:20%"><img class="" src="<%=logo_img%>" id="cafe_logo" alt="" width="150" height="100" style="padding: 5px 5px 5px 5px;border-radius: 20%;">
 	</span>
 	<span style="width: 80%;float: right;margin-top: 7px;">
 	<label style="color:darkblue;font-size: xx-large;"><%=@cafe.name%></label>
