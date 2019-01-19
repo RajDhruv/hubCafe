@@ -43,18 +43,32 @@ class UsersController < ApplicationController
 
   def validate_login
   	@user_data=User.where("email=?",params[:email]).last
-  	if @user_data.nil?
-  		@msg="User with Email #{params[:email]} is not a member of HubCafe yet!"
-		@success=false
-  	else
-  		if @user_data.password==params[:password]
-  			set_current_user(@user_data)
-  			@success=true
-  		else
-  			@msg="#{@user_data.name} you have entered wrong password to enter the Cafe."
-			@success=false
-  		end
-  	end
+    existing_user=session[:current_user]
+    if existing_user.nil?
+    	if @user_data.nil?
+    		@msg="User with Email #{params[:email]} is not a member of HubCafe yet!"
+  		  @success=false
+    	else
+    		if @user_data.password==params[:password]
+    			set_current_user(@user_data)
+    			@success=true
+    		else
+    			@msg="#{@user_data.name} you have entered wrong password to enter the Cafe."
+  			  @success=false
+    		end
+    	end
+    elsif existing_user["email"]==params[:email]
+        if @user_data.password==params[:password]
+          set_current_user(@user_data)
+          @success=true
+        else
+          @msg="#{@user_data.name} you have entered wrong password to enter the Cafe."
+          @success=false
+        end
+    else
+      @msg="#{@user_data.name} is already logged into the Cafe."
+      @success=false
+    end
   	render :partial=>"user_action_redirection.js.erb", :locals=>{:from=>"validateLogin"}
   end
 

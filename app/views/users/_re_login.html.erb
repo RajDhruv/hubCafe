@@ -1,6 +1,7 @@
 <center>
 <div class="form_container" style="padding:60px 25px 60px 25px;background-color: goldenrod;width: 50%;border-radius: 7px;">
 <%current_user_email=session[:current_user]["email"]%>
+<img src='<%=asset_path("login.png")%>' height="100" width="100" style="float:left; margin-right: -110px;margin-left: 70px;margin-top: -20px;">
 <form id="login_user">
 <table>
 <tr>
@@ -14,8 +15,10 @@
 </tr>
 
 </table>
-	<input type="button" value="Login" onclick="login_user();">
-	<input type="button" value="Cancel" onclick="$('#form_content').html('');$('.welcome_navs').removeClass('active');$('#default_welcome_page_content').show();">
+<div id="form_buttons" style="float: right;padding: 15px 10px 0 0px;">
+	<input type="button" value="Login" onclick="login_user();" style="background: green;color: white;border-radius: 5px;padding: 5px 20px 5px 20px;font-weight: bold;">
+	<input type="button" value="Cancel" onclick="$('#form_content').html('');$('.welcome_navs').removeClass('active');$('#default_welcome_page_content').show();" style="background: crimson;color: white;border-radius: 5px;padding: 5px 20px 5px 20px;font-weight: bold;">
+	</div>
 </form>
 </div>
 </center>
