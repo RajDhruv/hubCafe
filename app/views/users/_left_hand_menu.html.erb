@@ -16,6 +16,8 @@
 								<%profile_pic_gender=asset_path('profile_pic/male.png')%>
 							<%elsif current_user.sex=='Female'%>
 								<%profile_pic_gender=asset_path('profile_pic/female.png')%>
+							<%else%>
+								<%profile_pic_gender=asset_path('profile_pic/other.png')%>
 							<%end%>
 							<style type="text/css">
 								#user_profile_pic
