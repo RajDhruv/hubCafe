@@ -30,10 +30,10 @@
 	<td><label>Name: </label></td>
 	<td><label><input type="text" name="name" value="<%=current_user.name%>"></label></td>
 </tr>
-<tr>
+<!-- <tr>
 	<td><label>Age: </label></td>
 	<td><label><input type="number" name="age" value="<%=current_user.age%>"></label></td>
-</tr>
+</tr> -->
 <tr>
 	<td><label>Email: </label></td>
 	<td><label><input type="text" id="email" name="email" value="<%=current_user.email%>"></label></td>
@@ -53,7 +53,7 @@
 </tr>
 <tr>
 	<td><label>Date of Birth: </label></td>
-	<td><label><input type="date" name="date_of_birth" value="<%=current_user.date_of_birth%>"></label></td>
+	<td><label><input type="date" name="date_of_birth" value="<%=current_user.date_of_birth.to_s.to_date%>"></label></td>
 </tr>
 <tr>
 	<td><label>Define Yourself: </label></td>
