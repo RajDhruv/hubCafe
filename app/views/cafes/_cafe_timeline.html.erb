@@ -49,14 +49,16 @@
 <div style="width:80%;float:left;">
 	<%cafe_logo=@cafe.cafe_logo.url%>
 	<%if !cafe_logo.nil?%>
-	<%logo_img=cafe_logo%>
+	<%logo_img=cafe_logo
+	fallback_logo=asset_path("default_logos/cafe_logo_fallback.jpg")%>
 	<%else%>
-	<%logo_img=asset_path("coffee_mug.png")%>
+	<%logo_img=asset_path("coffee_mug.png")
+	fallback_logo=""%>
 	<%end%>
 	<style type="text/css">
 		#cafe_logo
 		{
-		background-image:url('<%=asset_path("default_logos/cafe_logo_fallback.jpg")%>');
+		background-image:url('<%=fallback_logo%>');
 		background-size: 100%;
 		background-repeat: no-repeat;
 		display:inline-block;
@@ -77,10 +79,16 @@
 </div>
 <br>
 <hr style="margin-top: 75px;">
-<div id="timeline_content" style="width:75%;float:left;overflow: scroll;">
-	<%=render :partial=>"setup_timeline.html.erb"%>
+<div id="cafe_timeline_contents">
+	<div id="timeline_content" style="width:75%;float:left;overflow: scroll;">
+		<%=render :partial=>"setup_timeline.html.erb"%>
+	</div>
+	<div id="cafe_interaction_div" style="width:25%;float:right;">
+		<div id="members_widget">
+			<%=render :partial=>"member_widget_timeline.html.erb"%>
+		</div>
+	</div>
 </div>
-<div id="cafe_interaction_div" style="width:25%;float:right;"></div>
 </div>
 <script type="text/javascript">
 	function get_create_form(controller)

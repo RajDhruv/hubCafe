@@ -1,0 +1,48 @@
+<%users_length=@members_data.length%>
+<div>
+	<label style="color:brown; font-size: large; padding: 0 0 0 10px;"><i><b>Members:</b></i></label>
+</div>
+<div class="col-lg-9" style="width:100%">
+<div class="row">
+<%top_three_members=@members_data[0..2]%>
+<%top_three_members.each_with_index do |user,ind|%>
+<div class="col-lg-4 col-md-6 mb-4" style="max-width: unset;height: 75px;">
+
+	<%profile_pic=user.profile_img.url
+	profile_pic_gender=""%>
+		<%if user.sex=='Male'%>
+			<%profile_pic_gender=asset_path('profile_pic/male.png')%>
+		<%elsif user.sex=='Female'%>
+			<%profile_pic_gender=asset_path('profile_pic/female.png')%>
+		<%else%>
+			<%profile_pic_gender=asset_path('profile_pic/other.png')%>
+		<%end%>
+		<style type="text/css">
+			#user_pic_widget_<%=user.id%>
+			{
+			background-image:url('<%=profile_pic_gender%>');
+			width: 100%;
+			height: 100%;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			}
+		</style>
+		<%if ind==0%>
+			<%border_color="chocolate"%>
+		<%else%>
+			<%border_color="black"%>
+		<%end%>
+		<div title="<%=user.name%>" id="user_pic_widget_<%=user.id%>" style="border-radius: 50%;border-color: <%=border_color%>;border-style: dotted;">
+			<img src="<%=profile_pic%>" class="img-responsive" alt="" style="border-radius: 50%;">	
+		</div>
+</div>
+<%end%>
+<%if users_length>3%>
+<div class="col-lg-4 col-md-6 mb-4" style="max-width: unset;height: 75px;">
+		<div id="view_all_users" style="border-radius: 50%;border-color: transparent;border-style: dotted;font-size: medium;padding: 15px 0px 0px 15px;cursor: pointer;">
+			<a >View All</a>	
+		</div>
+</div>
+<%end%>
+</div>
+</div>

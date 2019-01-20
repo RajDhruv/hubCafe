@@ -28,6 +28,7 @@ class CafesController < ApplicationController
     @cafe=Cafe.find_by_id(cafe_id)
     set_current_cafe(@cafe)
     populate_timeline #get all timeline posts array
+    get_members
     respond_to do |format|
       format.js{render :partial=>"cafes/cafe_redirection.js.erb",:locals=>{:from=>"show"}}
       format.html{render :partial=>"cafes/cafe_timeline.html.erb"}

@@ -28,4 +28,24 @@ class ApplicationController < ActionController::Base
   		end
   	end
   end
+
+  def get_members
+    current_cafe=Cafe.find_by_id(session[:current_cafe]["id"].to_i)
+    page=params[:page].to_i
+    @members_data=[]
+    if page==1
+      per_page=9
+      admin_data=User.find_by_id(current_cafe.admin_id)
+      @members_data<<admin_data
+    else
+      per_page=10
+    end
+   
+    all_users=CafeUser.paginate_by_sql("select * from cafe_users where cafe_id=#{current_cafe.id} and lock_version<>-1 ",:page=>page,:per_page=>per_page)
+    user_ids=all_users.map(&:user_id)
+    member_datas=User.where("id in (?) and lock_version<>-1",user_ids)
+    member_datas.each do |user|
+      @members_data<<user
+    end
+  end
 end
