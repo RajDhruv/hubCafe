@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 			@success=false
 		end
 	else
-	  	@msg="Sorry #{params[:name]}: Email you entered is already registered with us. Kindly register with another Email ID."
+	  @msg="Sorry #{params[:name]}: Email you entered is already registered with us. Kindly register with another Email ID."
 		@success=false
 	end
   	render :partial=>"user_action_redirection.js.erb", :locals=>{:from=>"userCreate"}
@@ -78,7 +78,56 @@ class UsersController < ApplicationController
   	render :partial=>"user_action_redirection.js.erb", :locals=>{:from=>"logout"}
   end
 
-  def edit
+  def my_profile
+    @user=User.find_by_id(session[:current_user]["id"])
+    render :partial=>"user_action_redirection.js.erb", :locals=>{:from=>"my_profile"}
+  end
+
+  def update
+    @user=User.find_by_id(session[:current_user]["id"])
+    if params[:email]==@user.email
+      @user.name = params[:name]
+      @user.age = params[:age]
+      @user.email = params[:email]
+      @user.password = params[:password]
+      @user.sex = params[:sex]
+      @user.date_of_birth = params[:date_of_birth]
+      @user.profile_def = params[:profile_def]
+      @user.profile_img = params[:profile_img]
+      @user.created_at=Time.now
+      if @user.save
+        @msg="Your Data is Updated."
+        @success=true
+      else
+        @msg="Sorry #{params[:name]}: There seems to be some error. Kindly try after some time."
+        @success=false
+      end
+    else
+      exist_email=User.where("email=?",params[:email]).last
+      if exist_email.nil?
+        @user.name = params[:name]
+        @user.age = params[:age]
+        @user.email = params[:email]
+        @user.password = params[:password]
+        @user.sex = params[:sex]
+        @user.date_of_birth = params[:date_of_birth]
+        @user.profile_def = params[:profile_def]
+        @user.profile_img = params[:profile_img]
+        @user.created_at=Time.now
+        if @user.save
+          @msg="Your Data is Updated."
+          @success=true
+        else
+          @msg="Sorry #{params[:name]}: There seems to be some error. Kindly try after some time."
+          @success=false
+        end
+      else
+        @msg="Sorry #{params[:name]}: Email you entered is already registered with us. Kindly enter another Email ID."
+        @success=false
+      end
+    end
+    my_profile
+
   end
 
   def delete

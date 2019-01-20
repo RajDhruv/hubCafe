@@ -43,29 +43,29 @@
 						<!-- END SIDEBAR USER TITLE -->
 						<!-- SIDEBAR BUTTONS -->
 						<div class="profile-userbuttons">
-							<button type="button" class="btn btn-success btn-sm">Profile</button>
+							<button type="button" class="btn btn-success btn-sm" onclick="get_left_hand_navs('users','my_profile')">Profile</button>
 							<button type="button" class="btn btn-danger btn-sm">Messages</button>
 						</div>
 						<!-- END SIDEBAR BUTTONS -->
 						<!-- SIDEBAR MENU -->
 						<div class="profile-usermenu">
 							<ul class="nav">
-								<li class="left_hand_menus" id="list_global_cafes" onclick="get_left_hand_navs('global_cafes')">
+								<li class="left_hand_menus" id="list_global_cafes" onclick="get_left_hand_navs('cafes','global_cafes')">
 									<a>
 									<i class="glyphicon glyphicon-global"></i>
 									Global Cafes </a>
 								</li>
-								<li class="left_hand_menus" id="list_membership_cafes" onclick="get_left_hand_navs('membership_cafes')">
+								<li class="left_hand_menus" id="list_membership_cafes" onclick="get_left_hand_navs('cafes','membership_cafes')">
 									<a>
 									<i class="glyphicon glyphicon-membership"></i>
 									Membership Cafes </a>
 								</li>
-								<li class="left_hand_menus" id="list_my_cafes" onclick="get_left_hand_navs('my_cafes')">
+								<li class="left_hand_menus" id="list_my_cafes" onclick="get_left_hand_navs('cafes','my_cafes')">
 									<a>
 									<i class="glyphicon glyphicon-mine"></i>
 									My Cafes </a>
 								</li>
-								<li class="left_hand_menus" id="list_tasks" onclick="get_left_hand_navs('tasks')">
+								<li class="left_hand_menus" id="list_tasks" onclick="get_left_hand_navs('cafes','tasks')">
 									<a>
 									<i class="glyphicon glyphicon-task"></i>
 									Tasks </a>
@@ -83,14 +83,14 @@
 			</div>
 		</div>
 <script type="text/javascript">
-	function get_left_hand_navs(link_clicked)
+	function get_left_hand_navs(contr,link_clicked)
 	{
 		$('.left_hand_menus').removeClass('active');
 		$('#list_'+link_clicked).addClass('active');
 		custom_loader('action_zone','pie_loader_cyan','LOADING '+link_clicked.replace(/_/g,' ').toUpperCase())
 		$.ajax({
 			type: 'post',
-			url: 'cafes/'+link_clicked
+			url: contr+'/'+link_clicked
 		})
 	}
 </script>

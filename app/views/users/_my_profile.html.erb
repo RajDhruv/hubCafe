@@ -1,0 +1,110 @@
+<%current_user_hash=session[:current_user]%>
+<%current_user=@user%>
+<%profile_pic=current_user.profile_img.url
+						profile_pic_gender=""%>
+							<%if current_user.sex=='Male'%>
+								<%profile_pic_gender=asset_path('profile_pic/male.png')%>
+							<%elsif current_user.sex=='Female'%>
+								<%profile_pic_gender=asset_path('profile_pic/female.png')%>
+							<%end%>
+							<style type="text/css">
+								#user_profile_pic_display
+								{
+								background-image:url('<%=profile_pic_gender%>');
+								width: 30%;
+								height: 300px;
+								background-size: 100%;
+								background-repeat: no-repeat;
+								}
+							</style>
+<center>
+<div class="form_container" style="padding:60px 25px 60px 25px;">
+	<div class="" id="user_profile_pic_display"  style="float:left; margin-right: -100px">
+	<img src="<%=profile_pic%>" class="img-responsive" alt="" style="height:100%;width:100%;border-radius: 10px;">
+	</div>
+
+<!-- <form id="new_user_registration"> -->
+<%= form_for @user,:url=>{:controller=>"users",:action=>"update"}, html: { multipart: true ,method: 'post',:id=>"new_user_registration"}, remote: true, authenticity_token: true do |f| %>
+<table>
+<tr>
+	<td><label>Name: </label></td>
+	<td><label><input type="text" name="name" value="<%=current_user.name%>"></label></td>
+</tr>
+<tr>
+	<td><label>Age: </label></td>
+	<td><label><input type="number" name="age" value="<%=current_user.age%>"></label></td>
+</tr>
+<tr>
+	<td><label>Email: </label></td>
+	<td><label><input type="text" id="email" name="email" value="<%=current_user.email%>"></label></td>
+</tr>
+<tr>
+	<td><label>Password: </label></td>
+	<td><label><input type="password" id="password" name="password" value="<%=current_user.password%>"></label></td>
+</tr>
+<tr>
+	<td><label>Confirm Password: </label></td>
+	<td><label><input type="password" id="confirm_password" name="confirm_password"></label></td>
+</tr>
+<tr>
+<td><label>Sex: </label></td>
+	<td><label>
+	<input type="radio" name="sex" value="Male" <%="checked" if current_user.sex=="Male"%>>Male &nbsp; <input type="radio" name="sex" value="Female" <%="checked" if current_user.sex=="Female"%>>Female &nbsp; <input type="radio" name="sex" value="Other" <%="checked" if current_user.sex=="Other"%>>Other</label></td>
+</tr>
+<tr>
+	<td><label>Date of Birth: </label></td>
+	<td><label><input type="date" name="date_of_birth" value="<%=current_user.date_of_birth%>"></label></td>
+</tr>
+<tr>
+	<td><label>Define Yourself: </label></td>
+	<td><label><textarea name="profile_def"><%=current_user.profile_def%></textarea></label></td>
+</tr>
+<tr>
+	<td><label>Update Profile Pic: </label></td>
+	<td><label><input type="file" name="profile_img"></input></label></td>
+</tr>
+
+</table>
+<div id="form_buttons" style="float: right;padding: 15px 10px 0 0px;">
+	<!-- <input type="button" value="Submit" onclick="new_user();"> -->
+	<%= f.submit "Update" ,:onclick=>"return validateUserData();" ,:style=>"background: green;color: white;border-radius: 5px;padding: 5px 20px 5px 20px;font-weight: bold;"%>
+	<!-- <input type="button" value="Cancel" onclick="$('#form_content').html('');$('.welcome_navs').removeClass('active');$('#default_welcome_page_content').show();" style="background: crimson;color: white;border-radius: 5px;padding: 5px 20px 5px 20px;font-weight: bold;"> -->
+	</div>
+<% end %>
+<!-- </form> -->
+</div>
+</center>
+
+<script type="text/javascript">
+	function validateUserData()
+	{
+		var pass=$('#password').val();
+		var confpass=$('#confirm_password').val();
+		var email=$('#email').val();
+		if(pass=="" || confpass=="")
+		{
+			alert("Please Enter Password(s)");
+			return false;
+		}
+		if (pass!=confpass)
+		{
+			alert('Password and Confirmation Password are not same. Kindly enter password carefully.');
+			return false;
+		}
+		if(email=="")
+		{
+			alert("Please Enter Email");
+			return false;
+		}
+		if (validateEmail(email)==false)
+		{
+			alert("Invalid Email ID");
+			return false;
+		}
+		return true;
+	}
+	function validateEmail(email) {
+		var re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+		return re.test(String(email).toLowerCase());
+	}
+</script>
