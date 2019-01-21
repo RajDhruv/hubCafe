@@ -40,9 +40,19 @@
 <%if users_length>3%>
 <div class="col-lg-4 col-md-6 mb-4" style="max-width: unset;height: 75px;">
 		<div id="view_all_users" style="border-radius: 50%;border-color: transparent;border-style: dotted;font-size: medium;padding: 15px 0px 0px 15px;cursor: pointer;">
-			<a >View All</a>	
+			<a onclick="getAllMembers('1');">View All</a>	
 		</div>
 </div>
 <%end%>
 </div>
 </div>
+<script type="text/javascript">
+	function getAllMembers(page)
+	{
+		custom_loader('cafe_timeline_contents','gears2','Loading Members');
+		$.ajax({
+			type: 'post',
+			url: 'cafes/show_all_members?page='+page
+			})
+	}
+</script>

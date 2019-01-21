@@ -1,23 +1,44 @@
 <style type="text/css">
-	#timeline_content::-webkit-scrollbar {
-    width: 20px;
-    background-color:black;
-    border-radius:10px;
+#timeline_content::-webkit-scrollbar {
+width: 10px;
+background-color:black;
+border-radius:10px;
 }
 /* Track */
 #timeline_content::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
+box-shadow: inset 0 0 5px grey; 
+border-radius: 10px;
 }
- 
+
 /* Handle */
 #timeline_content::-webkit-scrollbar-thumb {
-    background: grey; 
-    border-radius: 10px;
+background: grey; 
+border-radius: 10px;
 }
 /* Handle on hover */
 #timeline_content::-webkit-scrollbar-thumb:hover {
-    background: #b30000; 
+background: #b30000; 
+}
+
+#cafe_timeline_contents::-webkit-scrollbar {
+width: 10px;
+background-color:black;
+border-radius:10px;
+}
+/* Track */
+#cafe_timeline_contents::-webkit-scrollbar-track {
+box-shadow: inset 0 0 5px grey; 
+border-radius: 10px;
+}
+
+/* Handle */
+#cafe_timeline_contents::-webkit-scrollbar-thumb {
+background: grey; 
+border-radius: 10px;
+}
+/* Handle on hover */
+#cafe_timeline_contents::-webkit-scrollbar-thumb:hover {
+background: #b30000; 
 }
 
 </style>
@@ -79,7 +100,7 @@
 </div>
 <br>
 <hr style="margin-top: 75px;">
-<div id="cafe_timeline_contents">
+<div id="cafe_timeline_contents" style=";overflow-y: scroll;">
 	<div id="timeline_content" style="width:75%;float:left;overflow: scroll;">
 		<%=render :partial=>"setup_timeline.html.erb"%>
 	</div>
@@ -103,4 +124,5 @@
 </script>
 <script type="text/javascript">
 	$('#timeline_content').css('height',($(window).height()-210))
+	$('#cafe_timeline_contents').css('height',($(window).height()-210))
 </script>

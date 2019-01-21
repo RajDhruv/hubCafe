@@ -14,4 +14,6 @@ $("#action_zone").html("<%= escape_javascript(render :partial=>'cafes/cafe_timel
 <%when 'create'%>
 $("#list_tasks").click();
 $("#message_pop_up").html("<%= escape_javascript(render :partial=>'shared/noty_message_popup.html.erb' )%>");
+<%when 'show_all_members'%>
+$("#cafe_timeline_contents").html("<%= escape_javascript(render :partial=>'cafes/show_all_members.html.erb' )%>");
 <%end%>

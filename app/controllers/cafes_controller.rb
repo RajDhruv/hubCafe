@@ -73,6 +73,11 @@ class CafesController < ApplicationController
     render :partial=>"cafes/cafe_redirection.js.erb",:locals=>{:from=>"membership_cafes"}
   end
 
+  def show_all_members
+    get_members
+    render :partial=>"cafes/cafe_redirection.js.erb",:locals=>{:from=>"show_all_members"}
+  end
+
   def tasks
     render :partial=>"cafes/cafe_redirection.js.erb",:locals=>{:from=>"tasks"}
   end

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 			  post 'tasks'
 			  get 'show'
 			  post 'show'
+			  post 'show_all_members'
 		end
 	end
 
