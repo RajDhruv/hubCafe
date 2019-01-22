@@ -84,7 +84,6 @@ class UsersController < ApplicationController
   end
 
   def show_profile
-    logger.debug"QQQQQQQQQ_______#{params[:user_id].inspect}________#{session[:current_user]["id"].inspect}_______#{(params[:user_id]==session[:current_user]["id"]).inspect}__________#{(params[:user_id]==session[:current_user]["id"].to_s).inspect}"
     if params[:user_id]==session[:current_user]["id"].to_s
       my_profile
     else

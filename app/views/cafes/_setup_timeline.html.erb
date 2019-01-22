@@ -14,7 +14,7 @@ box-shadow: 7px 7px;
 	<div id="post_title">
 		<label style="color:blue;font-size: larger"><i><b><%=post.title%></b></i></label>
 		<label>&nbsp; <i><b>by:</b></i></label>
-		<label style="color:ivory;"><%=post.user.name%></label>
+		<label style="color:ivory;cursor: pointer;" onclick="show_profile('<%=post.user.id%>')"><%=post.user.name%></label>
 	</div>
 	<div id="post_description_<%=post.class.name%>_<%=post.id%>" style="width:100%;">
 		
