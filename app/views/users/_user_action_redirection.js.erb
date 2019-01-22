@@ -20,5 +20,7 @@ $("#form_content").html("<%= escape_javascript(render :partial=>'users/fresh_log
 	$("body").html("<%= escape_javascript(render :template=>'users/welcome.html.erb' )%>");
 <%when 'my_profile'%>
 	$("#action_zone").html("<%= escape_javascript(render :partial=>'users/my_profile.html.erb' )%>");
+<%when 'show_profile'%>
+	$("#cafe_timeline_contents").html("<%= escape_javascript(render :partial=>'users/user_profile.html.erb' )%>");
 <%end%>
 $("#message_pop_up").html("<%= escape_javascript(render :partial=>'shared/noty_message_popup.html.erb' )%>")

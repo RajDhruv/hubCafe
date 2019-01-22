@@ -32,12 +32,12 @@
 			<%else%>
 				<%border_color="black"%>
 			<%end%>
-			<div title="<%=user.name%>" id="user_pic_widget_<%=user.id%>" style="border-radius: 50%;border-color: <%=border_color%>;border-style: dotted;">
+			<div title="<%=user.name%>" id="user_pic_widget_<%=user.id%>" style="border-radius: 50%;border-color: <%=border_color%>;border-style: dotted;cursor: pointer;" onclick="show_profile('<%=user.id%>')">
 				<img src="<%=profile_pic%>" class="card-img-top" alt="" style="border-radius: 50%;height:100%">	
 			</div>
 			<div class="card-body" style="background: burlywood;border-radius: 20px;">
 	                  <h4 class="card-title">
-	                    <a ><%=user.name%></a>
+	                    <a onclick="show_profile('<%=user.id%>')" style="cursor: pointer;"><%=user.name%></a>
 	                  </h4>
 	                  <!-- <h5>$24.99</h5> -->
 	                  <p class="card-text"><%=user.profile_def%></p>

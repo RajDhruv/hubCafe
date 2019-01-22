@@ -1,0 +1,57 @@
+
+<%user=@user%>
+<%profile_pic=user.profile_img.url
+						profile_pic_gender=""%>
+							<%if user.sex=='Male'%>
+								<%profile_pic_gender=asset_path('profile_pic/male.png')%>
+							<%elsif user.sex=='Female'%>
+								<%profile_pic_gender=asset_path('profile_pic/female.png')%>
+							<%else%>
+								<%profile_pic_gender=asset_path('profile_pic/other.png')%>
+							<%end%>
+							<style type="text/css">
+								#user_profile_pic_display
+								{
+								background-image:url('<%=profile_pic_gender%>');
+								width: 30%;
+								height: 300px;
+								background-size: 100%;
+								background-repeat: no-repeat;
+								}
+							</style>
+<center>
+<div class="form_container" style="padding:60px 25px 60px 25px;">
+	<div class="" id="user_profile_pic_display"  style="float:left; margin-right: -100px">
+	<img src="<%=profile_pic%>" class="img-responsive" alt="" style="height:100%;width:100%;border-radius: 10px;">
+	</div>
+
+
+<table>
+<tr>
+	<td><label style="color: darkcyan;font-size: medium;">Name: </label></td>
+	<td><label><%=user.name%></label></td>
+</tr>
+<!-- <tr>
+	<td><label>Age: </label></td>
+	<td><label><input type="number" name="age" value="<%=user.age%>"></label></td>
+</tr> -->
+<tr>
+	<td><label style="color: darkcyan;font-size: medium;">Email: </label></td>
+	<td><label><%=user.email%></label></td>
+</tr>
+<tr>
+<td><label style="color: darkcyan;font-size: medium;">Sex: </label></td>
+	<td><label><%=user.sex%></label></td>
+</tr>
+<tr>
+	<td><label style="color: darkcyan;font-size: medium;">Date of Birth: </label></td>
+	<td><label>&nbsp;<%=user.date_of_birth.strftime("%d / %m / %Y")%></label></td>
+</tr>
+<tr>
+	<td><label style="color: darkcyan;font-size: medium;">About <%=user.name%>: </label></td>
+	<td><label>&nbsp;<i>"<%=user.profile_def%>"</i></label></td>
+</tr>
+
+</table>
+</div>
+</center>

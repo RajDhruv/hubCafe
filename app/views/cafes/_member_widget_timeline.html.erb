@@ -32,7 +32,7 @@
 		<%else%>
 			<%border_color="black"%>
 		<%end%>
-		<div title="<%=user.name%>" id="user_pic_widget_<%=user.id%>" style="border-radius: 50%;border-color: <%=border_color%>;border-style: dotted;">
+		<div title="<%=user.name%>" id="user_pic_widget_<%=user.id%>" style="border-radius: 50%;cursor: pointer;border-color: <%=border_color%>;border-style: dotted;" onclick="show_profile('<%=user.id%>')">
 			<img src="<%=profile_pic%>" class="img-responsive" alt="" style="border-radius: 50%;">	
 		</div>
 </div>

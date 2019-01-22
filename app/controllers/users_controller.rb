@@ -83,6 +83,16 @@ class UsersController < ApplicationController
     render :partial=>"user_action_redirection.js.erb", :locals=>{:from=>"my_profile"}
   end
 
+  def show_profile
+    logger.debug"QQQQQQQQQ_______#{params[:user_id].inspect}________#{session[:current_user]["id"].inspect}_______#{(params[:user_id]==session[:current_user]["id"]).inspect}__________#{(params[:user_id]==session[:current_user]["id"].to_s).inspect}"
+    if params[:user_id]==session[:current_user]["id"].to_s
+      my_profile
+    else
+      @user=User.find_by_id(params[:user_id])
+      render :partial=>"user_action_redirection.js.erb", :locals=>{:from=>"show_profile"}
+    end
+  end
+
   def update
     @user=User.find_by_id(session[:current_user]["id"])
     if params[:email]==@user.email

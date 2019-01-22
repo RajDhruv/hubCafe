@@ -34,11 +34,11 @@ class ApplicationController < ActionController::Base
     page=params[:page].to_i
     @members_data=[]
     if page==1
-      per_page=9
+      per_page=8
       admin_data=User.find_by_id(current_cafe.admin_id)
       @members_data<<admin_data
     else
-      per_page=10
+      per_page=9
     end
    
     all_users=CafeUser.paginate_by_sql("select * from cafe_users where cafe_id=#{current_cafe.id} and lock_version<>-1 ",:page=>page,:per_page=>per_page)

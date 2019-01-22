@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 			  post 'create',as:'creation'
 			  post 'validate_login'
 			  post 'logout'
+			  post 'show_profile'
 		end
 	end
 
