@@ -46,7 +46,7 @@
 						<!-- SIDEBAR BUTTONS -->
 						<div class="profile-userbuttons">
 							<button type="button" class="btn btn-success btn-sm" onclick="get_left_hand_navs('users','my_profile')">Profile</button>
-							<button type="button" class="btn btn-danger btn-sm">Messages</button>
+							<button type="button" class="btn btn-danger btn-sm" onclick="get_left_hand_navs('messages','inbox')">Messages</button>
 						</div>
 						<!-- END SIDEBAR BUTTONS -->
 						<!-- SIDEBAR MENU -->
@@ -94,5 +94,12 @@
 			type: 'post',
 			url: contr+'/'+link_clicked
 		})
+	}
+	function get_messages(user_id)
+	{
+		$.ajax({
+			type: 'post',
+			url: 'messages/get_messages?user_id='+user_id
+		})	
 	}
 </script>

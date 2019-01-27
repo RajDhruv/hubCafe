@@ -1,0 +1,9 @@
+<%case from%>
+<%when 'show_users'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'messages/show_users.html.erb' )%>")
+<%when 'get_messages'%>
+$("#action_zone").html("<%= escape_javascript(render :partial=>'messages/get_messages.html.erb',:locals=>{:current_user=>current_user})%>")
+<%when 'send_messages'%>
+$('#chat_panel').append("<label style='width:100%;'><label style='float:right; background-color: aliceblue; padding:5px 15px 5px 15px; border-radius: 5px;word-wrap: break-word; max-width:80%;'><span><%= @new_msg.context%></span></label><span style='color: grey;font-size: x-small;float: right;'><%=@new_msg.created_at.strftime('%d-%m-%y %H:%M')%></span></label>");
+$('#message_text_box').val('');
+<%end%>

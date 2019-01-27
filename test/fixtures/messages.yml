@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  receipient_one: 1
+  receipient_two: 1
+  context: MyText
+  lock_version: 1
+
+two:
+  receipient_one: 1
+  receipient_two: 1
+  context: MyText
+  lock_version: 1

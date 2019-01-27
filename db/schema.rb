@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190108202052) do
+ActiveRecord::Schema.define(version: 20190124195908) do
 
-  create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.text     "description",  limit: 65535
     t.integer  "lock_version"
@@ -67,6 +67,28 @@ ActiveRecord::Schema.define(version: 20190108202052) do
     t.datetime "updated_at",                  null: false
   end
 
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "receipient_one"
+    t.integer  "receipient_two"
+    t.text     "context",        limit: 65535
+    t.integer  "lock_version"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.text     "description",  limit: 65535
+    t.integer  "lock_version"
+    t.integer  "cafe_id"
+    t.integer  "post_id"
+    t.string   "post_type"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "age"
@@ -78,6 +100,7 @@ ActiveRecord::Schema.define(version: 20190108202052) do
     t.datetime "updated_at",                             null: false
     t.string   "profile_def",               default: "", null: false
     t.string   "profile_img"
+    t.integer  "lock_version",              default: 0
   end
 
 end

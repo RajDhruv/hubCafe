@@ -123,14 +123,6 @@ background: #b30000;
 			url: controller+"/new"
 		});
 	}
-	function show_profile(user_id)
-	{
-		custom_loader('cafe_timeline_contents','dna','Loading Profile');
-		$.ajax({
-			type: 'post',
-			url: 'users/show_profile?user_id='+user_id
-			})
-	}
 </script>
 <script type="text/javascript">
 	$('#timeline_content').css('height',($(window).height()-210))

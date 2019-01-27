@@ -1,0 +1,47 @@
+<%profile_pic=@user.profile_img.url
+		profile_pic_gender=""%>
+			<%if @user.sex=='Male'%>
+				<%profile_pic_gender=asset_path('profile_pic/male.png')%>
+			<%elsif @user.sex=='Female'%>
+				<%profile_pic_gender=asset_path('profile_pic/female.png')%>
+			<%else%>
+				<%profile_pic_gender=asset_path('profile_pic/other.png')%>
+			<%end%>
+			<style type="text/css">
+				#user_pic_msg
+				{
+				background-image:url('<%=profile_pic_gender%>');
+				width: 9%;
+				height: 75px;
+				background-size: 100%;
+				background-repeat: no-repeat;
+				}
+			</style>
+			
+<center>
+<div class="inbox_container" style="padding:60px 25px 60px 25px;background-color: aliceblue;width: 90%;border-radius: 7px;">
+<div title="<%=@user.name%>" id="user_pic_msg" style="border-radius: 50%;border-color: black;border-style: dotted;float: left;">
+				<img src="<%=profile_pic%>" class="card-img-top" alt="" style="border-radius: 50%;height:100%;float:left; ">	
+</div>
+<div id="msg_container" style="background-image:url('<%=asset_path('background_msgs.png')%>');background-size: 100% 90%;background-repeat: no-repeat;background-position-y: center;margin-top: -30px;float: left;width: 60%;padding: 80px 5px 0px 0px;">
+	<%=render :partial=>"messages/chat_panel.html.erb"%>
+</div>
+<div id="messanger_editor_zone" style="float:right; margin-top: 40%;">
+	<textarea id="message_text_box" style="width: 100%"></textarea>
+	<button style="background-color: blue;color: white;border-radius: 5px;padding: 5px 15px 5px 15px; float: right;" id="send_message" onclick="send_message('<%=@user.id%>')">Send</button>
+</div>
+</div>
+</center>
+<script type="text/javascript">
+	$('.inbox_container').css('height',($(window).height()-75));
+	$('#msg_container').css('height',($(window).height()-104));
+	function send_message(user_id)
+	{
+		var msg_text=$('#message_text_box').val();
+		$.ajax({
+			type: 'post',
+			url: 'messages/send_messages?user_id='+user_id+'&msg_text='+msg_text
+		})
+	}
+</script>
+

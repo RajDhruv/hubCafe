@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   mount Ckeditor::Engine => '/ckeditor'
 	root 'users#welcome'
 	resources :users do
@@ -53,7 +54,16 @@ Rails.application.routes.draw do
 		end
 	end
 
-  
+	resources :messages do
+		collection do
+			  post 'inbox'
+			  post 'get_messages'
+			  post 'send_messages'
+			  post 'delete'
+		end
+	end
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

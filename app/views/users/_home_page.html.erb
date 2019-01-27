@@ -12,5 +12,13 @@
 	</center>
 </div>
 <script type="text/javascript">
+function show_profile(user_id)
+	{
+		custom_loader('cafe_timeline_contents','dna','Loading Profile');
+		$.ajax({
+			type: 'post',
+			url: 'users/show_profile?user_id='+user_id
+			})
+	}
 	$('.home_page_subsection').css('height',($(window).height()-72))
 </script>
