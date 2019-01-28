@@ -6,4 +6,10 @@ $("#action_zone").html("<%= escape_javascript(render :partial=>'messages/get_mes
 <%when 'send_messages'%>
 $('#chat_panel').append("<label style='width:100%;'><label style='float:right; background-color: aliceblue; padding:5px 15px 5px 15px; border-radius: 5px;word-wrap: break-word; max-width:80%;'><span><%= @new_msg.context%></span></label><span style='color: grey;font-size: x-small;float: right;'><%=@new_msg.created_at.strftime('%d-%m-%y %H:%M')%></span></label>");
 $('#message_text_box').val('');
+$('#last_msg_time').val('<%=@new_msg.created_at%>')
+<%when 'get_latest_messages'%>
+<%if !@messages.nil? and !@messages.empty?%>
+$('#chat_panel').append("<%= escape_javascript(render :partial=>'messages/latest_msg_update.html.erb',:locals=>{:current_user=>current_user}) %>");
+$('#last_msg_time').val('<%=@messages.last.created_at%>')
+<%end%>
 <%end%>

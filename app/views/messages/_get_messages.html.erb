@@ -21,7 +21,9 @@
 <center>
 <div class="inbox_container" style="padding:60px 25px 60px 25px;background-color: aliceblue;width: 90%;border-radius: 7px;">
 <div title="<%=@user.name%>" id="user_pic_msg" style="border-radius: 50%;border-color: black;border-style: dotted;float: left;">
-				<img src="<%=profile_pic%>" class="card-img-top" alt="" style="border-radius: 50%;height:100%;float:left; ">	
+				<img src="<%=profile_pic%>" class="card-img-top" alt="" style="border-radius: 50%;height:100%;float:left; ">
+				<label><%=@user.name%></label>
+				<img src="<%=asset_path('refresh.png')%>" alt="Refresh Chat" title="Refresh Chat" style="padding: 5px 15px 5px 15px; float: right;height:70%;cursor: pointer;" id="refresh_chat" onclick="refresh_messages()">
 </div>
 <div id="msg_container" style="background-image:url('<%=asset_path('background_msgs.png')%>');background-size: 100% 90%;background-repeat: no-repeat;background-position-y: center;margin-top: -30px;float: left;width: 60%;padding: 80px 5px 0px 0px;">
 	<%=render :partial=>"messages/chat_panel.html.erb"%>
@@ -41,6 +43,14 @@
 		$.ajax({
 			type: 'post',
 			url: 'messages/send_messages?user_id='+user_id+'&msg_text='+msg_text
+		})
+	}
+	function refresh_messages()
+	{
+		after_time=$('#last_msg_time').val();
+		$.ajax({
+			type:'post',
+			url:'messages/get_latest_messages?user_id=<%=@user.id%>&after_time='+after_time
 		})
 	}
 </script>

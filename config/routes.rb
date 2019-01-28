@@ -59,6 +59,7 @@ Rails.application.routes.draw do
 			  post 'inbox'
 			  post 'get_messages'
 			  post 'send_messages'
+			  post 'get_latest_messages'
 			  post 'delete'
 		end
 	end

@@ -39,6 +39,14 @@ class MessagesController < ApplicationController
   	render :partial=>"messages/message_redirection.js.erb",:locals=>{:from=>"send_messages"}
   end
 
+  def get_latest_messages
+    current_user=User.find_by_id(session[:current_user]["id"])
+    @user=User.where("lock_version<>-1 and id = ?",params[:user_id]).last
+    logger.debug"HEYYYYYYY____  #{params[:after_time].inspect}"
+    @messages=Message.where("lock_version<>-1 and receipient_one in (#{@user.id},#{current_user.id}) and receipient_two in (#{@user.id},#{current_user.id}) and created_at>'#{params[:after_time]}'")
+    render :partial=>"messages/message_redirection.js.erb",:locals=>{:from=>"get_latest_messages",:current_user=>current_user}
+  end
+
   def delete
   end
 end

@@ -1,0 +1,17 @@
+<%@messages.each do |message|%>
+		<% if message.receipient_two==@user.id%>
+			<% label_float="left"
+			   label_color="lightyellow"
+			%>
+		<%else%>
+			<% label_float="right"
+			   label_color="aliceblue"
+			%>
+		<%end%>
+		<label style="width:100%;">
+		<label style="float:<%=label_float%>; background-color: <%=label_color%>; padding:5px 15px 5px 15px; border-radius: 5px;word-wrap: break-word; max-width:80%;">
+			<span><%=message.context%></span>
+		</label>
+		<span style="color: grey;font-size: x-small;float: <%=label_float%>;"><%=message.created_at.strftime("%d-%m-%y %H:%M")%></span>
+		</label>
+	<%end%>

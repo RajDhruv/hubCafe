@@ -39,6 +39,7 @@ background: #b30000;
 		</label>
 	<%end%>
 </div>
+<input type="hidden" id="last_msg_time" value="<%=@messages.last.created_at%>">
 <script type="text/javascript">
 
 	$(document).ready(function(){
@@ -46,4 +47,5 @@ background: #b30000;
 			$('#chat_panel').animate({ scrollTop: $('#chat_panel').prop("scrollHeight")}, 1000);
 		}, 500);
 	})
+
 </script>
