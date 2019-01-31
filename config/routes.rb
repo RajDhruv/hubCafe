@@ -60,6 +60,7 @@ Rails.application.routes.draw do
 			  post 'get_messages'
 			  post 'send_messages'
 			  post 'get_latest_messages'
+			  post 'get_old_messages'
 			  post 'delete'
 		end
 	end

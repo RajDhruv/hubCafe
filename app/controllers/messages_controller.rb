@@ -15,7 +15,12 @@ class MessagesController < ApplicationController
   	@user=User.where("lock_version<>-1 and id = ?",params[:user_id]).last
   	params[:page]||=1
   	page=params[:page]
-  	@messages=Message.paginate_by_sql("select * from messages where lock_version<>-1 and receipient_one in (#{@user.id},#{current_user.id}) and receipient_two in (#{@user.id},#{current_user.id})",:per_page=>15,:page=>page)
+  	@messages=Message.paginate_by_sql("select * from messages where lock_version<>-1 and receipient_one in (#{@user.id},#{current_user.id}) and receipient_two in (#{@user.id},#{current_user.id}) order by id desc",:per_page=>15,:page=>page)
+    if !@messages.nil? and !@messages.empty?
+      @messages=@messages.reverse
+      first_msg=@messages.first
+      @old_msg_count=Message.find_by_sql("select count(*) as count from messages where lock_version<>-1 and receipient_one in (#{@user.id},#{current_user.id}) and receipient_two in (#{@user.id},#{current_user.id}) and id<#{first_msg.id}").last.count
+    end
   	render :partial=>"messages/message_redirection.js.erb",:locals=>{:from=>"get_messages",:current_user=>current_user}
   end
 
@@ -42,9 +47,21 @@ class MessagesController < ApplicationController
   def get_latest_messages
     current_user=User.find_by_id(session[:current_user]["id"])
     @user=User.where("lock_version<>-1 and id = ?",params[:user_id]).last
-    logger.debug"HEYYYYYYY____  #{params[:after_time].inspect}"
     @messages=Message.where("lock_version<>-1 and receipient_one in (#{@user.id},#{current_user.id}) and receipient_two in (#{@user.id},#{current_user.id}) and created_at>'#{params[:after_time]}'")
     render :partial=>"messages/message_redirection.js.erb",:locals=>{:from=>"get_latest_messages",:current_user=>current_user}
+  end
+
+  def get_old_messages
+    current_user=User.find_by_id(session[:current_user]["id"])
+    @user=User.where("lock_version<>-1 and id = ?",params[:user_id]).last
+    params[:page]||=1
+    page=params[:page]
+    @messages=Message.paginate_by_sql("select * from messages where lock_version<>-1 and receipient_one in (#{@user.id},#{current_user.id}) and receipient_two in (#{@user.id},#{current_user.id}) and id<#{params[:before_id]}",:per_page=>15,:page=>page)
+    if !@messages.nil? and !@messages.empty?
+      first_msg=@messages.first
+      @old_msg_count=Message.find_by_sql("select count(*) as count from messages where lock_version<>-1 and receipient_one in (#{@user.id},#{current_user.id}) and receipient_two in (#{@user.id},#{current_user.id}) and id<#{first_msg.id}").last.count
+    end
+    render :partial=>"messages/message_redirection.js.erb",:locals=>{:from=>"get_old_messages",:current_user=>current_user}
   end
 
   def delete

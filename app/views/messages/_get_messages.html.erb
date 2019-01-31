@@ -53,6 +53,14 @@
 			url:'messages/get_latest_messages?user_id=<%=@user.id%>&after_time='+after_time
 		})
 	}
+	function get_old_messages(){
+		before_id=$('#top_msg_id').val();
+		custom_loader('old_messsages_control','bouncing_balls','Fetching Messages')
+		$.ajax({
+			type:'post',
+			url:'messages/get_old_messages?user_id=<%=@user.id%>&before_id='+before_id
+		})
+	}
 	$(document).ready(function(){
 			setTimeout(function() {
 				$('#refresh_chat').click();

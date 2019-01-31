@@ -20,26 +20,40 @@ border-radius: 10px;
 background: #b30000; 
 }
 </style>
+
 <div id="chat_panel" style="overflow-y: scroll; word-wrap: break-word;height:85%;width: 80%;">
-	<%@messages.each do |message|%>
-		<% if message.receipient_two==@user.id%>
-			<% label_float="left"
-			   label_color="lightyellow"
-			%>
-		<%else%>
-			<% label_float="right"
-			   label_color="aliceblue"
-			%>
+<%if @old_msg_count>0%>
+	<div id="old_messsages_control" style="margin-bottom: 4px;">
+		<div id="old_msg_count" style="background-color: #76ea76; padding:5px 15px 5px 15px; border-radius: 5px;"><%=@old_msg_count%> Messages</div>
+		<div id="previous_msgs_div" style="background-color: lightgreen; padding:5px 15px 5px 15px; border-radius: 5px;">
+			<label style="cursor: pointer;color: blue" onclick="get_old_messages();"><b>Load Previous Messages</b></label>
+		</div>
+	</div>
+<%end%>
+	<div id="chat_panel_messages">
+		<%@messages.each do |message|%>
+			<% if message.receipient_two==@user.id%>
+				<% label_float="left"
+				   label_color="lightyellow"
+				%>
+			<%else%>
+				<% label_float="right"
+				   label_color="aliceblue"
+				%>
+			<%end%>
+			
+			<label style="width:100%;">
+			<label style="float:<%=label_float%>; background-color: <%=label_color%>; padding:5px 15px 5px 15px; border-radius: 5px;word-wrap: break-word; max-width:80%;">
+				<span><%=message.context%></span>
+			</label>
+			<span style="color: grey;font-size: x-small;float: <%=label_float%>;"><%=message.created_at.strftime("%d-%m-%y %H:%M")%></span>
+			</label>
+			
 		<%end%>
-		<label style="width:100%;">
-		<label style="float:<%=label_float%>; background-color: <%=label_color%>; padding:5px 15px 5px 15px; border-radius: 5px;word-wrap: break-word; max-width:80%;">
-			<span><%=message.context%></span>
-		</label>
-		<span style="color: grey;font-size: x-small;float: <%=label_float%>;"><%=message.created_at.strftime("%d-%m-%y %H:%M")%></span>
-		</label>
-	<%end%>
+	</div>
 </div>
 <input type="hidden" id="last_msg_time" value="<%=@messages.last.created_at%>">
+<input type="hidden" id="top_msg_id" value="<%=@messages.first.id%>">
 <script type="text/javascript">
 
 	$(document).ready(function(){
