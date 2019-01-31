@@ -101,16 +101,59 @@
   background: #fff;
   min-height: 460px;
 }
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 55px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  opacity: 0.93;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
 </style>
 <%= javascript_include_tag "custom_loader/custom_loader"%>
 <body style="background:black">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="color: antiquewhite;"><h2>hubCafe</h2></a>
+  <a style="font-size: initial;"><i><p>"A social networking application build on Ruby on Rails Technology, providing a platform where users can create their social interaction groups 'Cafes' or can request to join cafes created by other users and can freely express their thought in form of posts or can enjoy one to one messaging with co-members.</p><p>Signup and enjoy the feeling of your self defined social interaction."</p></i></a>
+  <a></a>
+  <a style="font-size: small;float: right;color: aquamarine;">Created by:- Dhruv Raj "rajdhruv30@gmail.com"</a>
+
+</div>
 <div id="message_pop_up">
 	
 </div>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"><img src='<%=asset_path("coffee_mug.png")%>' height="25" style="float:left;"><span style="padding: 0 0 0 10px">hubCafe</span></a>
+      <a class="navbar-brand" style="cursor: pointer;" onclick="openNav()"><img src='<%=asset_path("coffee_mug.png")%>' height="25" style="float:left;"><span style="padding: 0 0 0 10px">hubCafe</span></a>
     </div>
     <ul class="nav navbar-nav" id="navbar_links_listing" style="float:right;">
       <li id="nav_register" class="welcome_navs" style="cursor: pointer" onclick='getPage("register")'><a>Register</a></li>
@@ -120,7 +163,10 @@
 </nav>
 
 <div id="form_content"></div>
-<div id="default_welcome_page_content"><center> <img src='<%=asset_path("welcome_home.png")%>'></center></div>
+<div id="default_welcome_page_content"><center> <img src='<%=asset_path("welcome_home.png")%>' id="welcome_page_image"></center>
+<label style="float:right;margin-right: 20px;"><span><b>hubCafe V.1.0</b> by <i>Dhruv Raj "rajdhruv30@gmail.com"</i></span></label>
+</div>
+
 <%#= cktext_area :page, :info, cols: 40, ckeditor: { uiColor: '#AADC6E', toolbar: 'mini' }%>
 </body>
 
@@ -136,4 +182,12 @@
 			url: 'users/'+page
 		})
 	}
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "400px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  $('#welcome_page_image').css('height',($(window).height()-104))
 </script>
