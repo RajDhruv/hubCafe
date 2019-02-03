@@ -8,13 +8,15 @@ background-repeat: no-repeat;
 box-shadow: 7px 7px;
 }
 </style>
+<input type="hidden" id="post_modal_height" value="">
 <%if !@posts.nil? and !@posts.empty?%>
-<%@posts.each do |post|%>
+<%@posts.each_with_index do |post,ind|%>
 <div id="post_<%=post.class.name%>_<%=post.id%>" style="padding: 5px 10px 5px 10px;">
 	<div id="post_title">
-		<label style="color:blue;font-size: larger"><i><b><%=post.title%></b></i></label>
+		<label style="color:blue;font-size: larger;cursor: pointer;" data-toggle="modal" data-target="#viewPostDetailsModal" href="#"  aria-expanded="false" onclick="get_post_view('<%=post.id%>','<%=post.class.name%>');$('#viewPostDetailsModal').css('z-index','');$('#post_detail_modal_header').html('<i><b><%=post.title%></b></i>');"><i><b><%=post.title%></b></i></label>
 		<label>&nbsp; <i><b>by:</b></i></label>
-		<label style="color:ivory;cursor: pointer;" onclick="show_profile('<%=post.user.id%>')"><%=post.user.name%></label>
+		<%posted_by=post.user%>
+		<label style="color:ivory;cursor: pointer;" onclick="show_profile('<%=posted_by.id%>')"><%=posted_by.name%></label>
 	</div>
 	<div id="post_description_<%=post.class.name%>_<%=post.id%>" style="width:100%;">
 		
@@ -25,7 +27,30 @@ box-shadow: 7px 7px;
 			$('#post_description_<%=post.class.name%>_<%=post.id%>').html(iframe);
 			$('#post_description_<%=post.class.name%>_<%=post.id%>').find('iframe').css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
 		</script>
+		<div>
+			<label style="padding: 10px 0px 0px 5px;"><img class="" src="<%=asset_path('comments-icon.png')%>" id="logout_image" alt="" width="40" height="30" style="padding: 2px 2px 2px 2px;"><span style="color:floralwhite"><%=@comments_count[ind]%></span><span style="color:black"> : Comment(s)</span></label>
+		</div>
 </div>
 <hr>
 <%end%>
 <%end%>
+<script type="text/javascript">
+	function get_post_view(post_id,post_class)
+	{
+		var iframe_src=$('#post_description_'+post_class+'_'+post_id).find('iframe').attr('src');
+		var iframe=document.createElement('iframe');
+		iframe_height=$('#post_detail_modal_body').height();
+		defined_height=$('#post_modal_height').val();
+		if(defined_height=="")
+		{
+			$('#post_modal_height').val(iframe_height);
+		}
+		else
+		{
+			iframe_height=defined_height;
+		}
+			iframe.src=iframe_src;
+			$('#post_detail_modal_body').html(iframe);
+		$('#post_detail_modal_body').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
+	}
+</script>

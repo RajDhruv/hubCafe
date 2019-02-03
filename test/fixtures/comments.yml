@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  created_by: 1
+  post_id: 1
+  post_type: MyString
+  lock_version: 1
+  cafe_id: 1
+
+two:
+  description: MyString
+  created_by: 1
+  post_id: 1
+  post_type: MyString
+  lock_version: 1
+  cafe_id: 1

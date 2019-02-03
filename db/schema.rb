@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190124195908) do
+ActiveRecord::Schema.define(version: 20190201194020) do
 
   create_table "blogs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 20190124195908) do
     t.index ["type"], name: "index_ckeditor_assets_on_type", using: :btree
   end
 
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "description"
+    t.integer  "created_by"
+    t.integer  "post_id"
+    t.integer  "lock_version"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "invitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "cafe_id"
     t.integer  "approver_id"
@@ -67,7 +76,7 @@ ActiveRecord::Schema.define(version: 20190124195908) do
     t.datetime "updated_at",                  null: false
   end
 
-  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "receipient_one"
     t.integer  "receipient_two"
     t.text     "context",        limit: 65535

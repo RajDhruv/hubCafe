@@ -2,6 +2,18 @@ Rails.application.routes.draw do
 
 
 
+  get 'comments/new'
+
+  get 'comments/create'
+
+  get 'comments/edit'
+
+  get 'comments/update'
+
+  get 'comments/delete'
+
+  get 'comments/show'
+
   mount Ckeditor::Engine => '/ckeditor'
 	root 'users#welcome'
 	resources :users do

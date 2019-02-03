@@ -20,12 +20,14 @@ class ApplicationController < ActionController::Base
   		blogs=Blog.where("id in (?) and lock_version<>-1",all_blog_id)
   	end
   	@posts=[]
+    @comments_count=[]
   	all_posts.each do |post|
   		case post.post_type
   		when "Blog"
   			selected_post=blogs.select{|x| x if x.id==post.post_id}.compact.last
   			@posts<<selected_post
   		end
+      @comments_count<<post.get_comments_count
   	end
   end
 
