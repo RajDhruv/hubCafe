@@ -1,0 +1,10 @@
+<%case from%>
+<%when 'show'%>
+$("#comments_modal_body").html("<%= escape_javascript(render :partial=>'comments/show.html.erb' )%>")
+$("#comments_modal_footer").html("<%= escape_javascript(render :partial=>'comments/comment_box.html.erb', :locals=>{:post_id=>post_id, :post_class=>post_class} )%>")
+<%when 'create'%>
+$("#comments_modal_body").find('tbody').append("<%= escape_javascript(render :partial=>'comments/new_comment.html.erb' )%>")
+$("#comments_modal_footer").html("<%= escape_javascript(render :partial=>'comments/comment_box.html.erb', :locals=>{:post_id=>post_id, :post_class=>post_class} )%>")
+$('#comments_modal_body').animate({ scrollTop: $('#comments_modal_body').prop("scrollHeight")}, 1000);
+$('#comment_count_<%=post_id%>_<%=post_class%>').html('<%=@new_comm_count%>')
+<%end%>

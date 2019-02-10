@@ -1,0 +1,20 @@
+<center>
+
+	 <input type="hidden" id="post_comm_id" value="<%=post_id%>">
+	 <input type="hidden" id="post_comm_class" value="<%=post_class%>">
+	 <textarea id="comment_description" style="width:90%"></textarea>
+	 <label id="comment_submit" style="float:right;padding:5px 15px 5px 15px; background-color: lightblue;border-radius: 7px;margin-right: 8px;" onclick="post_comment();">Comment</label>
+
+</center>
+<script type="text/javascript">
+	function post_comment()
+	{
+       post_id=$('#post_comm_id').val();
+       post_class=$('#post_comm_class').val();
+       comm_desc=$('#comment_description').val();
+       $.ajax({
+       	type: 'post',
+       	url: 'comments/create?post_id='+post_id+'&comm_desc='+comm_desc+'&post_class='+post_class
+       })
+	}
+</script>

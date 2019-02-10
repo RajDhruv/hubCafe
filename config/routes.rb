@@ -2,17 +2,6 @@ Rails.application.routes.draw do
 
 
 
-  get 'comments/new'
-
-  get 'comments/create'
-
-  get 'comments/edit'
-
-  get 'comments/update'
-
-  get 'comments/delete'
-
-  get 'comments/show'
 
   mount Ckeditor::Engine => '/ckeditor'
 	root 'users#welcome'
@@ -74,6 +63,17 @@ Rails.application.routes.draw do
 			  post 'get_latest_messages'
 			  post 'get_old_messages'
 			  post 'delete'
+		end
+	end
+
+	resources :comments do
+		collection do
+			   post 'new'
+			   post 'create'
+			   post 'edit'
+			   post 'update'
+			   post 'delete'
+			   post 'show'
 		end
 	end
 

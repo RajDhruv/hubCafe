@@ -28,7 +28,7 @@ box-shadow: 7px 7px;
 			$('#post_description_<%=post.class.name%>_<%=post.id%>').find('iframe').css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
 		</script>
 		<div>
-			<label style="padding: 10px 0px 0px 5px;"><img class="" src="<%=asset_path('comments-icon.png')%>" id="logout_image" alt="" width="40" height="30" style="padding: 2px 2px 2px 2px;"><span style="color:floralwhite"><%=@comments_count[ind]%></span><span style="color:black"> : Comment(s)</span></label>
+			<label style="padding: 10px 0px 0px 5px;cursor: pointer;"  data-toggle="modal" data-target="#viewCommentsModal" href="#"  aria-expanded="false" onclick="$('#viewCommentsModal').css('z-index','');$('#comments_modal_header').html('<i>Comments on <b><%=post.title%></b></i>');get_comments('<%=post.id%>','<%=post.class.name%>');"><img class="" src="<%=asset_path('comments-icon.png')%>" id="logout_image" alt="" width="40" height="30" style="padding: 2px 2px 2px 2px;"><span style="color:floralwhite" id="comment_count_<%=post.id%>_<%=post.class.name%>"><%=@comments_count[ind]%></span><span style="color:black"> : Comment(s)</span></label>
 		</div>
 </div>
 <hr>
@@ -52,5 +52,14 @@ box-shadow: 7px 7px;
 			iframe.src=iframe_src;
 			$('#post_detail_modal_body').html(iframe);
 		$('#post_detail_modal_body').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
+	}
+	function get_comments(post_id,post_class)
+	{
+		custom_loader('comments_modal_body','dna','Loading Comments');
+		custom_loader('comments_modal_footer','sand_clock','Loading');
+		$.ajax({
+			type: 'post',
+			url: 'comments/show?post_id='+post_id+'&post_class='+post_class
+		})
 	}
 </script>
