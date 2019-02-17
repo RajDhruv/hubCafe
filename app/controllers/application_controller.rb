@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   #protect_from_forgery with: :null_session
 
   def set_current_user(user_data)
+    user_data.password=""
   	session[:current_user]=user_data
   end
 

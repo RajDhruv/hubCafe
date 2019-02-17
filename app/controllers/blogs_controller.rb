@@ -30,4 +30,16 @@ class BlogsController < ApplicationController
   
   def show
   end
+
+  def delete
+    @blog=Blog.find(params[:id])
+    if @blog.delete_blog
+      @msg="Blog '#{@blog.title}' Deleted Successfully."
+      @success=true
+    else
+      @msg="Blog '#{@blog.title}' Could Not Be Deleted."
+      @success=false
+    end
+    render :partial=>"blogs/blogs_redirection.js.erb", :locals=>{:from=>"delete"}
+  end
 end

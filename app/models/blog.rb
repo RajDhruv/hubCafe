@@ -13,4 +13,11 @@ class Blog < ApplicationRecord
 		@post.created_by=self.created_by
 		@post.save
 	end
+
+	def delete_blog
+		sql="Update blogs set lock_version=-1,updated_at=now() where id=#{self.id}"
+		ActiveRecord::Base.connection.execute(sql)
+		sql2="Update posts set lock_version=-1,updated_at=now() where post_id=#{self.id} and post_type='#{self.class.name}' and lock_version<>-1"
+		ActiveRecord::Base.connection.execute(sql2)
+	end
 end

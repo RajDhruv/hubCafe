@@ -1,11 +1,3 @@
-<%if !@old_comments_count.nil?%>
-	<%first_comment=@comments.first%>
-	<center>
-		<label onclick="load_old_comments('<%=first_comment.post_id%>')" id="old_comments_label" style="padding:5px 15px 5px 15px;border-radius: 7px; color:violet; width:100%; cursor: pointer;"><span>+ </span><span id="old_comments_count"><%=@old_comments_count%></span><span> Comments</span></label>
-	</center>
-	<input type="hidden" id="oldest_comment_id" value="<%=first_comment.id%>">
-<%end%>
-<table style="width:100%">
 <%@comments.each do |comment|%>
 	<tr class="row_comment_<%=comment.id%>">
 		<% if comment.created_by.to_i==session[:current_user]["id"].to_i%>
@@ -62,4 +54,3 @@
 	</tr>
 	<tr class="row_comment_<%=comment.id%>"><td><hr></td><td><hr></td></tr>
 <%end%>
-</table>

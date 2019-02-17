@@ -1,5 +1,5 @@
 
-	<tr>
+	<tr class="row_comment_<%=@comment.id%>">
 		<% if @comment.created_by.to_i==session[:current_user]["id"].to_i%>
 			<% 
 			   label_color="antiquewhite"
@@ -37,15 +37,19 @@
 		</td>
 		<td style="width:90%; background-color: <%=label_color%>;">
 		<label style=" padding:5px 15px 5px 15px; border-radius: 5px;word-wrap: break-word; width:80%;">
-			<span><%=@comment.description%></span>
+			<span style="max-width: 80%;word-wrap: break-word;"><%=@comment.description%></span>
 		</label>
 		
 		</td>
 	</tr>
-	<tr>
+	<tr class="row_comment_<%=@comment.id%>">
 		<td></td>
 		<td>
-			<span style="color: grey;font-size: x-small;float:right;"><%=@comment.created_at.strftime("%d-%m-%y %H:%M")%></span>
+			<span style="color: grey;font-size: x-small;float:right;">
+			<%if @comment.created_by.to_i==session[:current_user]["id"].to_i%>
+				<img src="<%=asset_path('delete_button.png')%>" alt="Delete Comment" height="20" onclick="delete_item('comments','delete','<%=@comment.id%>')" style="cursor: pointer;"> &nbsp; 
+			<%end%>
+			<%=@comment.created_at.strftime("%d-%m-%y %H:%M")%></span>
 		</td>
 	</tr>
-	<tr><td><hr></td><td><hr></td></tr>
+	<tr class="row_comment_<%=@comment.id%>"><td><hr></td><td><hr></td></tr>

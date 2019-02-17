@@ -17,6 +17,9 @@ box-shadow: 7px 7px;
 		<label>&nbsp; <i><b>by:</b></i></label>
 		<%posted_by=post.user%>
 		<label style="color:ivory;cursor: pointer;" onclick="show_profile('<%=posted_by.id%>')"><%=posted_by.name%></label>
+		<%if post.created_by.to_i==session[:current_user]["id"].to_i%>
+				<img src="<%=asset_path('delete_button.png')%>" alt="Delete Post" height="20" onclick="delete_item('<%=post.class.name.pluralize.downcase%>','delete','<%=post.id%>')" style="cursor: pointer;float: right;"> &nbsp; 
+		<%end%>
 	</div>
 	<div id="post_description_<%=post.class.name%>_<%=post.id%>" style="width:100%;">
 		
@@ -30,8 +33,9 @@ box-shadow: 7px 7px;
 		<div>
 			<label style="padding: 10px 0px 0px 5px;cursor: pointer;"  data-toggle="modal" data-target="#viewCommentsModal" href="#"  aria-expanded="false" onclick="$('#viewCommentsModal').css('z-index','');$('#comments_modal_header').html('<i>Comments on <b><%=post.title%></b></i>');get_comments('<%=post.id%>','<%=post.class.name%>');"><img class="" src="<%=asset_path('comments-icon.png')%>" id="logout_image" alt="" width="40" height="30" style="padding: 2px 2px 2px 2px;"><span style="color:floralwhite" id="comment_count_<%=post.id%>_<%=post.class.name%>"><%=@comments_count[ind]%></span><span style="color:black"> : Comment(s)</span></label>
 		</div>
+		<hr>
 </div>
-<hr>
+
 <%end%>
 <%end%>
 <script type="text/javascript">

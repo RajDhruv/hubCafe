@@ -4,5 +4,7 @@ $('#create_form_area').html("<%=escape_javascript(render :partial=>'blogs/new.ht
 <%when 'create'%>
 $('#close_post_modal').click();
 $('#timeline_content').html("<%=escape_javascript(render :partial=>'cafes/setup_timeline.html.erb')%>")
+<%when 'delete'%>
+$('#post_Blog_<%=@blog.id%>').hide();
 <%end%>
 $("#message_pop_up").html("<%= escape_javascript(render :partial=>'shared/noty_message_popup.html.erb' )%>");

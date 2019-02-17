@@ -20,6 +20,12 @@ Rails.application.routes.draw do
 		end
 	end
 
+	resources :posts do
+		collection do
+			  get 'view_post'
+		end
+	end
+
 	resources :blogs do
 		collection do
 			  get 'new'
@@ -27,6 +33,7 @@ Rails.application.routes.draw do
 			  get 'show'
 			  post 'create'
 			  post 'update'
+			  post 'delete'
 		end
 	end
 
@@ -74,6 +81,7 @@ Rails.application.routes.draw do
 			   post 'update'
 			   post 'delete'
 			   post 'show'
+			   post 'old_comments'
 		end
 	end
 

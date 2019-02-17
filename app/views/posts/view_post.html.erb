@@ -1,0 +1,217 @@
+<style type="text/css">
+	.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 55px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  opacity: 0.93;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+.post_description_iframe
+{
+background-image:url('<%=asset_path("post_background.jpg")%>');
+width: 100%;
+background-size: 100%;
+background-repeat: no-repeat;
+box-shadow: 7px 7px;
+}
+</style>
+<%= javascript_include_tag "custom_loader/custom_loader"%>
+<body style="background:black">
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a style="color: antiquewhite;"><h2>hubCafe</h2></a>
+  <a style="font-size: initial;"><i><p>"A social networking application build on Ruby on Rails Technology, providing a platform where users can create their social interaction groups 'Cafes' or can request to join cafes created by other users and can freely express their thought in form of posts or can enjoy one to one messaging with co-members.</p><p>Signup and enjoy the feeling of your self defined social interaction."</p></i></a>
+  <a></a>
+  <a style="font-size: small;float: right;color: aquamarine;">Created by:- Dhruv Raj "rajdhruv30@gmail.com"</a>
+
+</div>
+<div id="message_pop_up">
+	
+</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" style="cursor: pointer;" onclick="openNav()"><img src='<%=asset_path("coffee_mug.png")%>' height="25" style="float:left;"><span style="padding: 0 0 0 10px">hubCafe</span></a>
+    </div>
+    <ul class="nav navbar-nav" id="navbar_links_listing" style="float:right;">
+      <li id="nav_register" class="welcome_navs" style="cursor: pointer" onclick='getPage("register")'><a>Register</a></li>
+      <li id="nav_login" class="welcome_navs" style="cursor: pointer" onclick='getPage("login")'><a>Login</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div id="form_content">
+  
+</div>
+<div id="default_welcome_page_content"><center> 
+<% if !@post.nil?%>
+<div id="post_description_<%=@post.class.name%>_<%=@post.id%>" style="width:97%;">
+    
+</div>
+<script type="text/javascript">
+      var iframe=document.createElement('iframe');
+      iframe_height=($(window).height()-104);
+      iframe.src='data:text/html;charset=utf-8,'+encodeURI('<%=@post.description.strip.html_safe%>');
+      $('#post_description_<%=@post.class.name%>_<%=@post.id%>').html(iframe);
+      $('#post_description_<%=@post.class.name%>_<%=@post.id%>').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
+    </script>
+<%else%>
+<img src="<%=asset_path('no_data.jpg')%>" alt="No Data Found" style="border-radius: 20px;height:auto;width: 98%;">
+<%end%>
+</center>
+<label style="float:right;margin-right: 20px;"><span><b>hubCafe V.1.0</b> by <i>Dhruv Raj "rajdhruv30@gmail.com"</i></span></label>
+</div>
+
+</body>
+
+<script type="text/javascript">
+	function getPage(page)
+	{	
+		$('.welcome_navs').removeClass('active');
+    $('#default_welcome_page_content').hide();
+		$('#nav_'+page).addClass('active');
+    domain_name=window.location.origin;
+		custom_loader('form_content','blob','Loading')
+		$.ajax({
+			type: 'post',
+			url: domain_name+'/users/'+page
+		})
+	}
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "400px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>
