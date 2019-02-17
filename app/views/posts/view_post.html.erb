@@ -186,7 +186,7 @@ box-shadow: 7px 7px;
 </div>
 <script type="text/javascript">
       var iframe=document.createElement('iframe');
-      iframe_height=($(window).height()-104);
+      iframe_height=($(window).height()-134);
       iframe.src='data:text/html;charset=utf-8,'+encodeURI('<%=@post.description.strip.html_safe%>');
       $('#post_description_<%=@post.class.name%>_<%=@post.id%>').html(iframe);
       $('#post_description_<%=@post.class.name%>_<%=@post.id%>').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
