@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  
+  skip_before_action :authenticate, only: [:view_post]
   def view_post
     case params[:type]
     when 'Blog'

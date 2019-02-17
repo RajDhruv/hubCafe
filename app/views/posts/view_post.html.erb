@@ -175,6 +175,12 @@ box-shadow: 7px 7px;
 </div>
 <div id="default_welcome_page_content"><center> 
 <% if !@post.nil?%>
+<div id="post_title">
+    <label style="color:blue;font-size: larger;"><i><b><%=@post.title%></b></i></label>
+    <label>&nbsp; <i><b>by:</b></i></label>
+    <%posted_by=@post.user%>
+    <label style="color:ivory;"><%=posted_by.name%></label>
+  </div>
 <div id="post_description_<%=@post.class.name%>_<%=@post.id%>" style="width:97%;">
     
 </div>

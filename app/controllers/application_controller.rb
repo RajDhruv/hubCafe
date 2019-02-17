@@ -1,14 +1,44 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate
   protect_from_forgery with: :exception
   #protect_from_forgery with: :null_session
 
   def set_current_user(user_data)
     user_data.password=""
+    session[:last_login]=Time.now
   	session[:current_user]=user_data
   end
 
   def set_current_cafe(cafe)
   	session[:current_cafe]=cafe
+  end
+
+  def authenticate
+    if !session[:current_user].nil?
+      last_login_time=session[:last_login]
+      current_time=Time.now
+      time_diff=current_time-1800
+      if !last_login_time.nil? and time_diff<last_login_time
+        session[:last_login]=Time.now
+        return true
+      else
+        @msg="User Time Out. Kindly Login Again!!!"
+        @success=false
+        session[:current_user]=nil
+        session[:last_login]=nil
+        respond_to do |format|
+        format.js{render :partial=>"users/user_action_redirection.js.erb",:locals=>{:from=>"logout"}}
+        format.html{render :template=>'users/welcome.html.erb'}
+        end
+      end
+    else
+      @msg="User Time Out. Kindly Login Again!!!"
+      @success=false
+      respond_to do |format|
+        format.js{render :partial=>"users/user_action_redirection.js.erb",:locals=>{:from=>"logout"}}
+        format.html{render :template=>'users/welcome.html.erb'}
+      end
+    end
   end
 
   def populate_timeline
