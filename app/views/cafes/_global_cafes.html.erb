@@ -93,9 +93,10 @@
 <script type="text/javascript">
 	function send_request(cafe_id,requestor_id)
 	{
+    domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: 'invitations/new_request_log?cafe_id='+cafe_id+'&requestor_id='+requestor_id
+			url: domain_name+'/invitations/new_request_log?cafe_id='+cafe_id+'&requestor_id='+requestor_id
 		})
 	}
 </script>

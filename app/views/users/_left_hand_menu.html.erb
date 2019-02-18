@@ -90,16 +90,18 @@
 		$('.left_hand_menus').removeClass('active');
 		$('#list_'+link_clicked).addClass('active');
 		custom_loader('action_zone','pie_loader_cyan','LOADING '+link_clicked.replace(/_/g,' ').toUpperCase())
+		domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: contr+'/'+link_clicked
+			url: domain_name+"/"+contr+'/'+link_clicked
 		})
 	}
 	function get_messages(user_id)
 	{
+		domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: 'messages/get_messages?user_id='+user_id
+			url: domain_name+"/"+'messages/get_messages?user_id='+user_id
 		})	
 	}
 </script>

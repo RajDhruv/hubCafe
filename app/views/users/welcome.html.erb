@@ -176,10 +176,11 @@
 		$('.welcome_navs').removeClass('active');
     $('#default_welcome_page_content').hide();
 		$('#nav_'+page).addClass('active');
-		custom_loader('form_content','blob','Loading')
+		custom_loader('form_content','blob','Loading');
+    domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: 'users/'+page
+			url: domain_name+'/users/'+page
 		})
 	}
   function openNav() {

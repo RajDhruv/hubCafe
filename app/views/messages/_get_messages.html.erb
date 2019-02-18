@@ -40,25 +40,28 @@
 	function send_message(user_id)
 	{
 		var msg_text=$('#message_text_box').val();
+		domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: 'messages/send_messages?user_id='+user_id+'&msg_text='+msg_text
+			url: domain_name+'/messages/send_messages?user_id='+user_id+'&msg_text='+msg_text
 		})
 	}
 	function refresh_messages()
 	{
 		after_time=$('#last_msg_time').val();
+		domain_name=window.location.origin;
 		$.ajax({
 			type:'post',
-			url:'messages/get_latest_messages?user_id=<%=@user.id%>&after_time='+after_time
+			url: domain_name+'/messages/get_latest_messages?user_id=<%=@user.id%>&after_time='+after_time
 		})
 	}
 	function get_old_messages(){
 		before_id=$('#top_msg_id').val();
 		custom_loader('old_messsages_control','bouncing_balls','Fetching Messages')
+		domain_name=window.location.origin;
 		$.ajax({
 			type:'post',
-			url:'messages/get_old_messages?user_id=<%=@user.id%>&before_id='+before_id
+			url: domain_name+'/messages/get_old_messages?user_id=<%=@user.id%>&before_id='+before_id
 		})
 	}
 	$(document).ready(function(){

@@ -50,9 +50,10 @@
 	function getAllMembers(page)
 	{
 		custom_loader('cafe_timeline_contents','gears2','Loading Members');
+		domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: 'cafes/show_all_members?page='+page
+			url: domain_name+"/"+'cafes/show_all_members?page='+page
 			})
 	}
 </script>

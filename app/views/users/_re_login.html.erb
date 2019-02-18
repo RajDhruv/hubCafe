@@ -27,9 +27,10 @@
 	function login_user()
 	{
 		dataForm=$('#login_user').serialize();
+		domain_name=window.location.origin;
 		$.ajax({
 			type:'post',
-			url:"users/validate_login",
+			url:domain_name+"/users/validate_login",
 			data:dataForm
 		})
 	}

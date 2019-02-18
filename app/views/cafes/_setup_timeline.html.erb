@@ -61,9 +61,10 @@ box-shadow: 7px 7px;
 	{
 		custom_loader('comments_modal_body','dna','Loading Comments');
 		custom_loader('comments_modal_footer','sand_clock','Loading');
+		domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: 'comments/show?post_id='+post_id+'&post_class='+post_class
+			url: domain_name+'/comments/show?post_id='+post_id+'&post_class='+post_class
 		})
 	}
 </script>

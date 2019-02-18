@@ -21,10 +21,11 @@
 <script type="text/javascript">
 	function load_task(cont,link_clicked)
 	{
-		custom_loader('action_zone','snake_game','LOADING')
+		custom_loader('action_zone','snake_game','LOADING');
+		domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: cont+'/'+link_clicked
+			url: domain_name+"/"+ cont+'/'+link_clicked
 		})
 	}
 </script>

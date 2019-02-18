@@ -138,24 +138,27 @@ background: #b30000;
 	{
 		$('#post_form_options').hide(); 
 		custom_loader('create_form_area','dna','Getting '+controller,'white');
+		domain_name=window.location.origin;
 		$.ajax({
 			type:"get",
-			url: controller+"/new"
+			url: domain_name+"/"+ controller+"/new"
 		});
 	}
 	function delete_item(controller,method,id,classname)
 	{
+		domain_name=window.location.origin;
 		$.ajax({
 			type:"post",
-			url: controller+"/"+method+"?id="+id+"&classname="+classname
+			url: domain_name+"/"+ controller+"/"+method+"?id="+id+"&classname="+classname
 		})
 	}
 	function load_old_comments(post_id)
 	{
 		last_msg_id=$('#oldest_comment_id').val();
+		domain_name=window.location.origin;
 		$.ajax({
 			type:"post",
-			url:"comments/old_comments?postId="+post_id+"&last_msg_id="+last_msg_id
+			url: domain_name+"/"+"comments/old_comments?postId="+post_id+"&last_msg_id="+last_msg_id
 		})
 	}
 </script>

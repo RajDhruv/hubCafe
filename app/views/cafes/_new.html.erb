@@ -36,9 +36,10 @@
 	function new_cafe()
 	{
 		dataForm=$('#new_cafe_create').serialize();
+		domain_name=window.location.origin;
 		$.ajax({
 			type:'post',
-			url:"cafes/create",
+			url:domain_name+"/cafes/create",
 			data:dataForm
 		})
 	}

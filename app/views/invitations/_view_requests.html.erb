@@ -37,9 +37,10 @@ end%>
 <script type="text/javascript">
 	function accept_reject_invitation(from,id)
 	{
+		domain_name=window.location.origin;
 		$.ajax({
 			type: 'post',
-			url: 'invitations/take_action?action_type='+from+'&for_id='+id
+			url: domain_name+'/invitations/take_action?action_type='+from+'&for_id='+id
 		})
 	}
 </script>

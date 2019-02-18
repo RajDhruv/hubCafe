@@ -12,9 +12,10 @@
        post_id=$('#post_comm_id').val();
        post_class=$('#post_comm_class').val();
        comm_desc=$('#comment_description').val();
+       domain_name=window.location.origin;
        $.ajax({
        	type: 'post',
-       	url: 'comments/create?post_id='+post_id+'&comm_desc='+comm_desc+'&post_class='+post_class
+       	url: domain_name+'/comments/create?post_id='+post_id+'&comm_desc='+comm_desc+'&post_class='+post_class
        })
 	}
 </script>
