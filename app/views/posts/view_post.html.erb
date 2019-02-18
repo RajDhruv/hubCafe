@@ -138,10 +138,10 @@
 }
 .post_description_iframe
 {
-background-image:url('<%=asset_path("post_background.jpg")%>');
+background-image:url('<%=asset_path("post_view_background.jpg")%>');
 width: 100%;
 background-size: 100%;
-background-repeat: round;
+background-repeat: no-repeat;
 box-shadow: 7px 7px;
 }
 </style>
@@ -181,12 +181,12 @@ box-shadow: 7px 7px;
     <%posted_by=@post.user%>
     <label style="color:ivory;"><%=posted_by.name%></label>
   </div>
-<div id="post_description_<%=@post.class.name%>_<%=@post.id%>" style="width:97%;">
+<div id="post_description_<%=@post.class.name%>_<%=@post.id%>" style="width:90%;">
     
 </div>
 <script type="text/javascript">
       var iframe=document.createElement('iframe');
-      iframe_height=($(window).height()-134);
+      iframe_height=($(window).height()-154);
       iframe.src='data:text/html;charset=utf-8,'+encodeURI('<%=@post.description.strip.html_safe%>');
       $('#post_description_<%=@post.class.name%>_<%=@post.id%>').html(iframe);
       $('#post_description_<%=@post.class.name%>_<%=@post.id%>').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
