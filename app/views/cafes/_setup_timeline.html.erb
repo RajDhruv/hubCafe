@@ -56,6 +56,8 @@ box-shadow: 7px 7px;
 			iframe.src=iframe_src;
 			$('#post_detail_modal_body').html(iframe);
 		$('#post_detail_modal_body').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
+		post_view_url=window.location.origin+"/posts/view_post?type="+post_class+"&id="+post_id
+		$('#post_detail_modal_footer').html('<span id="post_view_url">'+post_view_url+'</span>').css('color','purple').css('font-weight','bold').css('padding','5px 15px 5px 15px');
 	}
 	function get_comments(post_id,post_class)
 	{
