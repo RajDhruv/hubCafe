@@ -1,4 +1,4 @@
-<%if !@old_comments_count.nil?%>
+<%if !@old_comments_count.nil? and @old_comments_count>0%>
 	<%first_comment=@comments.first%>
 	<center>
 		<label onclick="load_old_comments('<%=first_comment.post_id%>')" id="old_comments_label" style="padding:5px 15px 5px 15px;border-radius: 7px; color:violet; width:100%; cursor: pointer;"><span>+ </span><span id="old_comments_count"><%=@old_comments_count%></span><span> Comments</span></label>

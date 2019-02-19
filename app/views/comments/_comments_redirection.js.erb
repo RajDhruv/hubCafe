@@ -4,6 +4,10 @@ $("#comments_modal_body").html("<%= escape_javascript(render :partial=>'comments
 $("#comments_modal_footer").html("<%= escape_javascript(render :partial=>'comments/comment_box.html.erb', :locals=>{:post_id=>post_id, :post_class=>post_class} )%>")
 $('#comments_modal_body').animate({ scrollTop: $('#comments_modal_body').prop("scrollHeight")}, 1000);
 <%when 'create'%>
+if($("#comments_modal_body").find('tbody').length==0)
+{
+	$("#comments_modal_body").html('<table style="width:100%"><tbody></tbody></table>')
+}
 $("#comments_modal_body").find('tbody').append("<%= escape_javascript(render :partial=>'comments/new_comment.html.erb' )%>")
 $("#comments_modal_footer").html("<%= escape_javascript(render :partial=>'comments/comment_box.html.erb', :locals=>{:post_id=>post_id, :post_class=>post_class} )%>")
 $('#comments_modal_body').animate({ scrollTop: $('#comments_modal_body').prop("scrollHeight")}, 1000);
