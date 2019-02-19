@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	# skip_before_filter :verify_authenticity_token, :only => [:create]
-  skip_before_action :authenticate, only: [:register, :create,:login,:validate_login,:logout]
+  skip_before_action :authenticate, only: [:register, :create,:login,:validate_login,:logout,:welcome]
   def welcome
 
   end

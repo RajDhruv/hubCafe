@@ -7,6 +7,30 @@ background-size: 100%;
 background-repeat: no-repeat;
 box-shadow: 7px 7px;
 }
+.copied {
+
+    position: fixed;
+    color: #5ad805;
+    /*top: 28px !important;*/
+   /* margin-left: 350px !important;*/
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 4px;
+    width: 260px;
+    z-index: 1;
+    border-radius: 10px;
+
+}
+.copy-link-icon
+{
+background-image:url('<%=asset_path("copy_clipboard.png")%>');
+padding: 18px;
+width: 100%;
+height: 100%;
+background-size: 95%;
+background-repeat: no-repeat;
+padding-bottom: 0px;
+}
 </style>
 <input type="hidden" id="post_modal_height" value="">
 <%if !@posts.nil? and !@posts.empty?%>
@@ -39,6 +63,35 @@ box-shadow: 7px 7px;
 <%end%>
 <%end%>
 <script type="text/javascript">
+function copyToClipboardFF(e) {
+  window.prompt('Copy to clipboard: Ctrl C, Enter', e)
+}
+function copyToClipboard(e) {
+  var t,
+  i = !0,
+  n = document.createRange();
+  if (window.clipboardData) window.clipboardData.setData('Text', e.val());
+   else {
+    var o = $('<div>');
+    o.css({
+      position: 'absolute',
+      left: '-1000px',
+      top: '-1000px'
+    }),
+    o.text(e.val()),
+    $('body').append(o),
+    n.selectNodeContents(o.get(0)),
+    t = window.getSelection(),
+    t.removeAllRanges(),
+    t.addRange(n);
+    try {
+      i = document.execCommand('copy', !1, null)
+    } catch (s) {
+      copyToClipboardFF(e.val())
+    }
+    i && o.remove()
+  }
+}
 	function get_post_view(post_id,post_class)
 	{
 		var iframe_src=$('#post_description_'+post_class+'_'+post_id).find('iframe').attr('src');
@@ -57,7 +110,7 @@ box-shadow: 7px 7px;
 			$('#post_detail_modal_body').html(iframe);
 		$('#post_detail_modal_body').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
 		post_view_url=window.location.origin+"/posts/view_post?type="+post_class+"&id="+post_id
-		$('#post_detail_modal_footer').html('<span id="post_view_url">'+post_view_url+'</span>').css('color','purple').css('font-weight','bold').css('padding','5px 15px 5px 15px');
+		$('#post_detail_modal_footer').html('<input type="text" value="'+post_view_url+'" id="share_link_text_box_'+post_id+"_"+post_class+'" style="display:none;"><span class="permalinknew linkcopy" title="Copy Share Link" style="cursor:pointer;"><a class="'+post_id+'_'+post_class+'" style="margin-top:2px"><i class="copy-link-icon"></i></a><div></div></span>').css('color','purple').css('font-weight','bold').css('padding','5px 15px 5px 15px');
 	}
 	function get_comments(post_id,post_class)
 	{
@@ -69,4 +122,12 @@ box-shadow: 7px 7px;
 			url: domain_name+'/comments/show?post_id='+post_id+'&post_class='+post_class
 		})
 	}
+	$(document).on("click",'.linkcopy a',function(e){
+			var clip=$(this).attr('class');
+			copyToClipboard($("#share_link_text_box_"+clip));
+			$(this).parent().find('div').html('<span class="copied">Link has been successfully copied</span>').hide().fadeIn(600);
+			setTimeout(function() {
+				$('.linkcopy').parent().find('.copied').fadeOut(600);
+			}, 5000);
+		})
 </script>
