@@ -13,7 +13,7 @@ class PostsController < ApplicationController
         case post_class
         when 'Blog'
           @post=Blog.where("id=#{post_id} and lock_version<>-1").last
-          if @post.nil?
+          if !@post.nil?
             title_scrap=@post.title.split(' ')[0..7].join(' ')
             if !(post_name_scrap==title_scrap)
               @post=nil
