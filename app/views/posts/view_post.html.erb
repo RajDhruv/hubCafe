@@ -221,3 +221,8 @@ box-shadow: 7px 7px;
     document.getElementById("mySidenav").style.width = "0";
   }
 </script>
+<%if !session[:current_user].nil?%>
+<script type="text/javascript">
+  $('#navbar_links_listing').html("<%= escape_javascript(render :partial=>'users/active_users_navlinks.html.erb')%>");
+</script>
+<%end%>

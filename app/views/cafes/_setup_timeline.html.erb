@@ -37,7 +37,7 @@ padding-bottom: 0px;
 <%@posts.each_with_index do |post,ind|%>
 <div id="post_<%=post.class.name%>_<%=post.id%>" style="padding: 5px 10px 5px 10px;">
 	<div id="post_title">
-		<label style="color:blue;font-size: larger;cursor: pointer;" data-toggle="modal" data-target="#viewPostDetailsModal" href="#"  aria-expanded="false" onclick="get_post_view('<%=post.id%>','<%=post.class.name%>');$('#viewPostDetailsModal').css('z-index','');$('#post_detail_modal_header').html('<i><b><%=post.title%></b></i>');"><i><b><%=post.title%></b></i></label>
+		<label style="color:blue;font-size: larger;cursor: pointer;" data-toggle="modal" data-target="#viewPostDetailsModal" href="#"  aria-expanded="false" onclick="get_post_view('<%=post.id%>','<%=post.class.name%>','<%=post.title.split(" ")[0..7].join('-')%>','<%=session[:current_cafe]["slug"]%>');$('#viewPostDetailsModal').css('z-index','');$('#post_detail_modal_header').html('<i><b><%=post.title%></b></i>');"><i><b><%=post.title%></b></i></label>
 		<label>&nbsp; <i><b>by:</b></i></label>
 		<%posted_by=post.user%>
 		<label style="color:ivory;cursor: pointer;" onclick="show_profile('<%=posted_by.id%>')"><%=posted_by.name%></label>
@@ -92,7 +92,7 @@ function copyToClipboard(e) {
     i && o.remove()
   }
 }
-	function get_post_view(post_id,post_class)
+	function get_post_view(post_id,post_class,url_string,cafe_slug)
 	{
 		var iframe_src=$('#post_description_'+post_class+'_'+post_id).find('iframe').attr('src');
 		var iframe=document.createElement('iframe');
@@ -109,7 +109,7 @@ function copyToClipboard(e) {
 			iframe.src=iframe_src;
 			$('#post_detail_modal_body').html(iframe);
 		$('#post_detail_modal_body').find('iframe').css('height',iframe_height).css('width','100%').css('border-style','dotted').addClass('post_description_iframe');
-		post_view_url=window.location.origin+"/posts/view_post?type="+post_class+"&id="+post_id
+		post_view_url=window.location.origin+"/posts/view_post?post="+post_class+"-"+url_string+"-"+post_id+"&cafe_url="+cafe_slug
 		$('#post_detail_modal_footer').html('<input type="text" value="'+post_view_url+'" id="share_link_text_box_'+post_id+"_"+post_class+'" style="display:none;"><span class="permalinknew linkcopy" title="Copy Share Link" style="cursor:pointer;"><a class="'+post_id+'_'+post_class+'" style="margin-top:2px"><i class="copy-link-icon"></i></a><div></div></span>').css('color','purple').css('font-weight','bold').css('padding','5px 15px 5px 15px');
 	}
 	function get_comments(post_id,post_class)
