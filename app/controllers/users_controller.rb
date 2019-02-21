@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 		if @user.save
 			@msg="Welcome to HubCafe #{@user.name}"
 			@success=true
+      UserMailer.welcome_email(@user).deliver
 		else
 			@msg="Sorry #{params[:name]}: There seems to be some error. Kindly try after some time."
 			@success=false
