@@ -32,6 +32,17 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:        'smtp.gmail.com', # default: localhost
+  port:           587,                  # default: 25
+  user_name:      'dhruv.heroku@gmail.com',
+  password:       'Annapurna@123',
+  authentication: :plain,                # :plain, :login or :cram_md5
+  domain: "hubcafe.herokuapp.com"
+}
+
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

@@ -26,6 +26,8 @@ gem 'mysql2', '~> 0.3.20'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'actionmailer'
+
 gem 'ckeditor'
 gem 'slim-rails', '3.1.1'
 gem 'mini_magick'

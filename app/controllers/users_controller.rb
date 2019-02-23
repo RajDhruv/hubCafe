@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def create
-  	exist_email=User.where("email=?",params[:email]).last
+  	exist_email=User.where("email=? and lock_version<>-1",params[:email]).last
 	if exist_email.nil?
 		@user=User.new
     @user.name = params[:name]
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 		if @user.save
 			@msg="Welcome to HubCafe #{@user.name}"
 			@success=true
-      UserMailer.welcome_email(@user).deliver
+      UserMailer.welcome_email(@user).deliver_now
 		else
 			@msg="Sorry #{params[:name]}: There seems to be some error. Kindly try after some time."
 			@success=false
