@@ -64,7 +64,8 @@ Rails.application.configure do
   user_name:      'dhruv.heroku@gmail.com',
   password:       'Annapurna@123',
   authentication: :plain,                # :plain, :login or :cram_md5
-  domain: "hubcafe.herokuapp.com"
+  domain: "hubcafe.herokuapp.com",
+  enable_starttls_auto: true
 }
 
   # Ignore bad email addresses and do not raise email delivery errors.
